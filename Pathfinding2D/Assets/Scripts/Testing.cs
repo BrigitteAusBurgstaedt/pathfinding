@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class Testing : MonoBehaviour
 {
+    [SerializeField] private PathfindingDebugStepVisual pathfindingDebugStepVisual;
+    [SerializeField] private PathfindingVisual pathfindingVisual;
     private Pathfinding pathfinding;
 
     // Start is called before the first frame update
     private void Start()
     {
         pathfinding = new Pathfinding(16, 9);
+        pathfindingDebugStepVisual.Setup(pathfinding.GetGrid());
+        pathfindingVisual.SetGrid(pathfinding.GetGrid());
     }
 
     // Update is called once per frame

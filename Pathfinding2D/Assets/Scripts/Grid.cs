@@ -5,6 +5,13 @@ using UnityEngine;
 
 public class Grid<TGridObject>
 {
+    public event EventHandler<OnGridObjectChangedEventArgs> OnGridObjectChanged;
+    public class OnGridObjectChangedEventArgs : EventArgs
+    {
+        public int x;
+        public int y;
+    }
+
     private int width;
     private int height;
     private float cellSize;
@@ -44,7 +51,7 @@ public class Grid<TGridObject>
         return gridArray[x, y];
     }
 
-    private Vector3 GetWorldPosition(int x, int y)
+    public Vector3 GetWorldPosition(int x, int y)
     {
         return new Vector3(x, y) * cellSize + originPosition;
     }
