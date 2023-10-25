@@ -105,4 +105,9 @@ public class Grid<TGridObject>
     {
         return originPosition;
     }
+
+    public float GetCellSize()
+    {
+        return cellSize;
+    }
 }
