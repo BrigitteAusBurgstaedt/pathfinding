@@ -50,7 +50,7 @@ public class Grid<TGridObject>
     }
 
     // Converts the Wold Position to x and y Position in the Grid
-    private void GetXY(Vector3 worldPosition, out int x, out int y)
+    public void GetXY(Vector3 worldPosition, out int x, out int y)
     {
         x = Mathf.FloorToInt((worldPosition - originPosition).x / cellSize);
         y = Mathf.FloorToInt((worldPosition - originPosition).y / cellSize);
@@ -99,5 +99,10 @@ public class Grid<TGridObject>
     public int GetHeight()
     {
         return height;
+    }
+
+    public Vector3 GetOriginPosition()
+    {
+        return originPosition;
     }
 }
