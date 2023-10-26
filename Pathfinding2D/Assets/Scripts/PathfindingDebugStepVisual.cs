@@ -120,7 +120,7 @@ public class PathfindingDebugStepVisual : MonoBehaviour
                     Transform visualNode = visualNodeArray[tmpX, tmpY];
                     SetupVisualNode(visualNode, gCost, hCost, fCost);
 
-                    Color backgroundColor = Color.black;
+                    Color backgroundColor = Color.grey;
 
                     if (isInClosedList)
                     {
@@ -174,7 +174,7 @@ public class PathfindingDebugStepVisual : MonoBehaviour
                     }
                     else
                     {
-                        backgroundColor = Color.black;
+                        backgroundColor = Color.grey;
                     }
 
                     visualNode.Find("sprite").GetComponent<SpriteRenderer>().color = backgroundColor;
