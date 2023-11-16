@@ -20,7 +20,7 @@ public class ShowSpeachBuble : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-        carakterSprits = Resources.LoadAll<Sprite>("Carakters");
+        carakterSprits = Resources.LoadAll<Sprite>("Characters");
 
         UpdateCarakter(carakter);
 
