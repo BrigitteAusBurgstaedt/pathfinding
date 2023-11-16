@@ -7,18 +7,18 @@ public class AnswerScript : MonoBehaviour
 	public bool isCorrect = false;
 	public QuizManager quizmanager;
 
-	void Answer()
+	public void Answer()
     {
 
-		if (isCorrect)
+		if(isCorrect)
 		{
 			Debug.Log("Korrekt");
-			quizmanager.correct();
+			quizmanager.Correct();
 		}
 		else
 		{
 			Debug.Log("Falsch");
-			quizmanager.correct();
+			quizmanager.Correct();
 
 		}
 

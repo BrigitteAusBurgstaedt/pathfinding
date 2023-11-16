@@ -26,7 +26,7 @@ public class QuizManager : MonoBehaviour
 		GoPanel.SetActive(true);
 	}
 
-	public void correct()
+	public void Correct()
 	{
 		QnA.RemoveAt(currentQuestion);
 		generateQuestion();
@@ -35,13 +35,13 @@ public class QuizManager : MonoBehaviour
 
 	void SetAnswers()
 	{
-		for (int i = 0; i < options.Length; i++)
+        for (int i = 0; i < options.Length; i++)
 		{
 			options[i].GetComponent<AnswerScript>().isCorrect = false;
 
 			options[i].transform.GetChild(0).GetComponent<Text>().text = QnA[currentQuestion].Answers[i];
 
-			if (QnA[currentQuestion].CorrectAnswer == i++)
+			if(QnA[currentQuestion].CorrectAnswer == i++)
 			{
 				options[i].GetComponent<AnswerScript>().isCorrect = true;
 			}
