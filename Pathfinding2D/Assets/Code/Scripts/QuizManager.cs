@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
+using UnityEngine.SceneManagement;
+
 public class QuizManager : MonoBehaviour
 {
 	public List<QuestionAndAnswer> QnA;
@@ -13,25 +15,45 @@ public class QuizManager : MonoBehaviour
 	public GameObject GoPanel;
 
 	public Text QuestionTxt;
+	public Text ScoreText;
+
+	int totalQuestions = 0;
+	public int score;
 
 	private void Start()
 	{
+		totalQuestions = QnA.Count;
 		GoPanel.SetActive(false);
 		generateQuestion();
 	}
+
+	public void retry()
+    {
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
 	public void GameOver()
 	{
 		Quizpanel.SetActive(false);
 		GoPanel.SetActive(true);
+		ScoreText.text = score + "/" + totalQuestions;
 	}
 
 	public void Correct()
 	{
+		//eine Antwort ist richtig
+		score += 1;
 		QnA.RemoveAt(currentQuestion);
 		generateQuestion();
 	}
 
+	public void wrong()
+    {
+		//eine Antwort ist falsch
+		QnA.RemoveAt(currentQuestion);
+		generateQuestion();
+
+	}
 
 	void SetAnswers()
 	{
