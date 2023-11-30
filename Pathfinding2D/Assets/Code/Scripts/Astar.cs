@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Astar
 {
@@ -95,7 +96,7 @@ public class Astar
 
             //Finds the next closest step on the grid
             var neighboors = current.Neighboors;
-            for (int i = 0; i < neighboors.Count; i++)//look threw our current spots neighboors (current spot is the shortest F distance in openSet
+            for (int i = 0; i < neighboors.Count; i++)//look through our current spots neighboors (current spot is the shortest F distance in openSet
             {
                 var n = neighboors[i];
                 if (!ClosedSet.Contains(n) && n.Height < 1)//Checks to make sure the neighboor of our current tile is not within closed set, and has a height of less than 1
@@ -132,25 +133,14 @@ public class Astar
 
     private int Heuristic(Spot a, Spot b)
     {
-        //manhattan
+        // manhattan (schlechte heuristik)
+        // var dx = Math.Abs(a.X - b.X);
+        // var dy = Math.Abs(a.Y - b.Y);
+        // return 1 * (dx + dy);
+
         var dx = Math.Abs(a.X - b.X);
         var dy = Math.Abs(a.Y - b.Y);
-        return 1 * (dx + dy);
-
-        #region diagonal
-        //diagonal
-        // Chebyshev distance
-        //var D = 1;
-        // var D2 = 1;
-        //octile distance
-        //var D = 1;
-        //var D2 = 1;
-        //var dx = Math.Abs(a.X - b.X);
-        //var dy = Math.Abs(a.Y - b.Y);
-        //var result = (int)(1 * (dx + dy) + (D2 - 2 * D));
-        //return result;// *= (1 + (1 / 1000));
-        //return (int)Math.Abs(a.X - b.X) + Math.Abs(a.Y - b.Y);
-        #endregion
+        return 1 * Math.Max(dx,dy); // nicht perfekt funktioniert aber
     }
 }
 public class Spot
@@ -175,24 +165,30 @@ public class Spot
     }
     public void AddNeighboors(Spot[,] grid, int x, int y)
     {
+        bool isOdd = y % 2 == 1;
+
         if (x < grid.GetUpperBound(0))
-            Neighboors.Add(grid[x + 1, y]);
+            Neighboors.Add(grid[x + 1, y]); // rechts 
         if (x > 0)
-            Neighboors.Add(grid[x - 1, y]);
+            Neighboors.Add(grid[x - 1, y]); // links 
         if (y < grid.GetUpperBound(1))
-            Neighboors.Add(grid[x, y + 1]);
+            Neighboors.Add(grid[x, y + 1]); // oben links (für ungerade); oben rechts (sonst)
         if (y > 0)
-            Neighboors.Add(grid[x, y - 1]);
-        #region diagonal
-        //if (X > 0 && Y > 0)
-        //    Neighboors.Add(grid[X - 1, Y - 1]);
-        //if (X < Utils.Columns - 1 && Y > 0)
-        //    Neighboors.Add(grid[X + 1, Y - 1]);
-        //if (X > 0 && Y < Utils.Rows - 1)
-        //    Neighboors.Add(grid[X - 1, Y + 1]);
-        //if (X < Utils.Columns - 1 && Y < Utils.Rows - 1)
-        //    Neighboors.Add(grid[X + 1, Y + 1]);
-        #endregion
+            Neighboors.Add(grid[x, y - 1]); // unten links (für ungerade); unten rechts (sonst)
+
+        if (isOdd)
+        {
+            if (y < grid.GetUpperBound(1) && x > 0)
+                Neighboors.Add(grid[x - 1, y + 1]); // oben links 
+            if (y > 0 && x > 0)
+                Neighboors.Add(grid[x - 1, y - 1]); // unten links 
+        } else
+        {
+            if (y < grid.GetUpperBound(1) && x < grid.GetUpperBound(0))
+                Neighboors.Add(grid[x + 1, y + 1]); // oben rechts 
+            if (y > 0 && x < grid.GetUpperBound(0))
+                Neighboors.Add(grid[x + 1, y - 1]); // unten rechts 
+        }
     }
 
 

@@ -727,7 +727,7 @@ MonoBehaviour:
   tilemap: {fileID: 1255794895}
   roadMap: {fileID: 640083339}
   roadTile: {fileID: 11400000, guid: e8e1469be60cccd4db7fa36af09fab00, type: 2}
-  start: {x: 0, y: 0}
+  start: {x: -7, y: -1}
 --- !u!114 &1235499534 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4031174983277146748, guid: d908b335c24967646b3301006e3f133a, type: 3}
