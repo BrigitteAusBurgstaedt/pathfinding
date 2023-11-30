@@ -12,37 +12,15 @@ public class GridManager : MonoBehaviour
     Astar astar;
     List<Spot> roadPath = new List<Spot>();
     new Camera camera;
-    BoundsInt bounds;
     // Start is called before the first frame update
     void Start()
     {
-        tilemap.CompressBounds();
         roadMap.CompressBounds();
-        bounds = tilemap.cellBounds;
         camera = Camera.main;
 
+        astar = new Astar(tilemap);
+    }
 
-        CreateGrid();
-        astar = new Astar(spots, bounds.size.x, bounds.size.y);
-    }
-    public void CreateGrid()
-    {
-        spots = new Vector3Int[bounds.size.x, bounds.size.y];
-        for (int x = bounds.xMin, i = 0; i < (bounds.size.x); x++, i++)
-        {
-            for (int y = bounds.yMin, j = 0; j < (bounds.size.y); y++, j++)
-            {
-                if (tilemap.HasTile(new Vector3Int(x, y, 0)))
-                {
-                    spots[i, j] = new Vector3Int(x, y, 0);
-                }
-                else
-                {
-                    spots[i, j] = new Vector3Int(x, y, 1);
-                }
-            }
-        }
-    }
     private void DrawRoad()
     {
         for (int i = 0; i < roadPath.Count; i++)
@@ -69,7 +47,6 @@ public class GridManager : MonoBehaviour
         }
         if (Input.GetMouseButton(0))
         {
-            CreateGrid();
 
             Vector3 world = camera.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int gridPos = tilemap.WorldToCell(world);
@@ -77,7 +54,8 @@ public class GridManager : MonoBehaviour
             if (roadPath != null && roadPath.Count > 0)
                 roadPath.Clear();
 
-            roadPath = astar.CreatePath(spots, start, new Vector2Int(gridPos.x, gridPos.y), 1000);
+            astar.UpdateSpots(tilemap);
+            roadPath = astar.CreatePath(start, new Vector2Int(gridPos.x, gridPos.y), 1000);
             if (roadPath == null)
                 return;
 

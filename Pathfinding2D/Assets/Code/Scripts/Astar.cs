@@ -3,26 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
 
-public class Astar
+public class Astar : Suchalgorithmus
 {
-    public Spot[,] Spots;
-    public Astar(Vector3Int[,] grid, int columns, int rows)
-    {
-        Spots = new Spot[columns, rows];
-    }
-    private bool IsValidPath(Vector3Int[,] grid, Spot start, Spot end)
-    {
-        if (end == null)
-            return false;
-        if (start == null)
-            return false;
-        if (end.Height >= 1)
-            return false;
-        return true;
-    }
-    public List<Spot> CreatePath(Vector3Int[,] grid, Vector2Int start, Vector2Int end, int length)
+
+    public Astar(Tilemap tilemap) : base(tilemap) {}
+
+    public override List<Spot> CreatePath(Vector2Int start, Vector2Int end, int length)
     {
         //if (!IsValidPath(grid, start, end))
         //     return null;
@@ -31,15 +20,6 @@ public class Astar
         Spot Start = null;
         var columns = Spots.GetUpperBound(0) + 1;
         var rows = Spots.GetUpperBound(1) + 1;
-        Spots = new Spot[columns, rows];
-
-        for (int i = 0; i < columns; i++)
-        {
-            for (int j = 0; j < rows; j++)
-            {
-                Spots[i, j] = new Spot(grid[i, j].x, grid[i, j].y, grid[i, j].z);
-            }
-        }
 
         for (int i = 0; i < columns; i++)
         {
@@ -52,7 +32,8 @@ public class Astar
                     End = Spots[i, j];
             }
         }
-        if (!IsValidPath(grid, Start, End))
+
+        if (!IsValidPath(Start, End))
             return null;
         List<Spot> OpenSet = new List<Spot>();
         List<Spot> ClosedSet = new List<Spot>();
@@ -99,7 +80,7 @@ public class Astar
             for (int i = 0; i < neighboors.Count; i++)//look through our current spots neighboors (current spot is the shortest F distance in openSet
             {
                 var n = neighboors[i];
-                if (!ClosedSet.Contains(n) && n.Height < 1)//Checks to make sure the neighboor of our current tile is not within closed set, and has a height of less than 1
+                if (!ClosedSet.Contains(n) && n.IsWalkable)//Checks to make sure the neighboor of our current tile is not within closed set, and has a height of less than 1
                 {
                     var tempG = current.G + 1;//gets a temp comparison integer for seeing if a route is shorter than our current path
 
@@ -142,54 +123,4 @@ public class Astar
         var dy = Math.Abs(a.Y - b.Y);
         return 1 * Math.Max(dx,dy); // nicht perfekt funktioniert aber
     }
-}
-public class Spot
-{
-    public int X;
-    public int Y;
-    public int F;
-    public int G;
-    public int H;
-    public int Height = 0;
-    public List<Spot> Neighboors;
-    public Spot previous = null;
-    public Spot(int x, int y, int height)
-    {
-        X = x;
-        Y = y;
-        F = 0;
-        G = 0;
-        H = 0;
-        Neighboors = new List<Spot>();
-        Height = height;
-    }
-    public void AddNeighboors(Spot[,] grid, int x, int y)
-    {
-        bool isOdd = y % 2 == 1;
-
-        if (x < grid.GetUpperBound(0))
-            Neighboors.Add(grid[x + 1, y]); // rechts 
-        if (x > 0)
-            Neighboors.Add(grid[x - 1, y]); // links 
-        if (y < grid.GetUpperBound(1))
-            Neighboors.Add(grid[x, y + 1]); // oben links (für ungerade); oben rechts (sonst)
-        if (y > 0)
-            Neighboors.Add(grid[x, y - 1]); // unten links (für ungerade); unten rechts (sonst)
-
-        if (isOdd)
-        {
-            if (y < grid.GetUpperBound(1) && x > 0)
-                Neighboors.Add(grid[x - 1, y + 1]); // oben links 
-            if (y > 0 && x > 0)
-                Neighboors.Add(grid[x - 1, y - 1]); // unten links 
-        } else
-        {
-            if (y < grid.GetUpperBound(1) && x < grid.GetUpperBound(0))
-                Neighboors.Add(grid[x + 1, y + 1]); // oben rechts 
-            if (y > 0 && x < grid.GetUpperBound(0))
-                Neighboors.Add(grid[x + 1, y - 1]); // unten rechts 
-        }
-    }
-
-
 }
