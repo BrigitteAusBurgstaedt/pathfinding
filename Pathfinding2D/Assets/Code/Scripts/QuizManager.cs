@@ -63,7 +63,7 @@ public class QuizManager : MonoBehaviour
 
 			options[i].transform.GetChild(0).GetComponent<Text>().text = QnA[currentQuestion].Answers[i];
 
-			if(QnA[currentQuestion].CorrectAnswer == i++)
+			if(QnA[currentQuestion].CorrectAnswer == i+1)
 			{
 				options[i].GetComponent<AnswerScript>().isCorrect = true;
 			}
