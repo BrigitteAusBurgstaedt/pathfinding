@@ -16,7 +16,12 @@ namespace pathfinding
         public override List<Spot> CreatePath(Spot start, Spot end, int maxLength)
         {
             if (!IsValidPath(start, end))
+            {
+                Debug.Log("Kein valider Pfad!");
                 return new List<Spot>();
+            }
+          
+
             List<Spot> OpenSet = new List<Spot>();
             List<Spot> ClosedSet = new List<Spot>();
 
@@ -35,7 +40,7 @@ namespace pathfinding
                 var current = OpenSet[winner];
 
                 //Found the path, creates and returns the path
-                if (end != null && OpenSet[winner] == end)
+                if (OpenSet[winner] == end)
                 {
                     List<Spot> Path = new List<Spot>();
                     var temp = current;
@@ -89,6 +94,8 @@ namespace pathfinding
                 }
 
             }
+
+            Debug.Log("Keinen Pfad gefunden!");
             return new List<Spot>();
         }
 
