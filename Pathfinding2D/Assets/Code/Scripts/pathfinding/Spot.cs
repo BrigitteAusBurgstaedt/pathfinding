@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 using UnityEngine;
 using UnityEditorInternal;
 using System;
+using System.Text;
 
 namespace pathfinding
 {
@@ -52,33 +53,16 @@ namespace pathfinding
             IsWalkable = isWalkable;
         }
 
-        public void AddNeighbors(Spot[,] grid, int x, int y)
+        public void PrintNeighbors()
         {
-            bool isOdd = (y % 2 == 1);
-
-            if (x < grid.GetUpperBound(0))
-                Neighbors.Add(grid[x + 1, y]); // rechts 
-            if (x > 0)
-                Neighbors.Add(grid[x - 1, y]); // links 
-            if (y < grid.GetUpperBound(1))
-                Neighbors.Add(grid[x, y + 1]); // oben links (für ungerade); oben rechts (sonst)
-            if (y > 0)
-                Neighbors.Add(grid[x, y - 1]); // unten links (für ungerade); unten rechts (sonst)
-
-            if (isOdd)
+            StringBuilder sb = new StringBuilder("Spot(" + this.X + ", " + this.Y + ") \nNachbarn:\n");
+           
+            foreach (var neighbor in Neighbors)
             {
-                if (y < grid.GetUpperBound(1) && x > 0)
-                    Neighbors.Add(grid[x - 1, y + 1]); // oben links 
-                if (y > 0 && x > 0)
-                    Neighbors.Add(grid[x - 1, y - 1]); // unten links 
+                sb.Append( "\t(" + neighbor.X + ", " + neighbor.Y + ")");
             }
-            else
-            {
-                if (y < grid.GetUpperBound(1) && x < grid.GetUpperBound(0))
-                    Neighbors.Add(grid[x + 1, y + 1]); // oben rechts 
-                if (y > 0 && x < grid.GetUpperBound(0))
-                    Neighbors.Add(grid[x + 1, y - 1]); // unten rechts 
-            }
+
+            Debug.Log(sb.ToString());
         }
     }
 }

@@ -13,8 +13,15 @@ namespace pathfinding
 
         public Astar(Tilemap tilemap) : base(tilemap) { }
 
+        public List<Spot> CreatePath(Vector2Int start, Vector2Int end, int maxLength)
+        {
+            return CreatePath(graph.GetSpot(start.x, start.y), graph.GetSpot(end.x, end.y), maxLength); 
+        }
+
         public override List<Spot> CreatePath(Spot start, Spot end, int maxLength)
         {
+            // TODO: Fix Memory problem!!!
+
             if (!IsValidPath(start, end))
             {
                 Debug.Log("Kein valider Pfad!");
@@ -63,7 +70,7 @@ namespace pathfinding
 
                 //Finds the next closest step on the grid
                 var neighboors = current.Neighbors;
-                for (int i = 0; i < neighboors.Count; i++)//look through our current spots neighboors (current spot is the shortest F distance in openSet
+                for (int i = 0; i < neighboors.Count; i++)//look through our current spots neighboors (current spot is the shortest F distance in openSet)
                 {
                     var n = neighboors[i];
                     if (!ClosedSet.Contains(n) && n.IsWalkable)//Checks to make sure the neighboor of our current tile is not within closed set, and has a height of less than 1

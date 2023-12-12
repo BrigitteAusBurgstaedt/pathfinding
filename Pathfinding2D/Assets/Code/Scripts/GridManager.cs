@@ -49,15 +49,12 @@ public class GridManager : MonoBehaviour
             if (roadPath != null && roadPath.Count > 0) // Löschen der alten Pfadliste
                 roadPath.Clear();
 
-            roadPath = astar.CreatePath(Utils.GetSpot(astar.Spots, start), Utils.GetSpot(astar.Spots, new Vector2Int(gridPos.x, gridPos.y)), 1000);
+            roadPath = astar.CreatePath(start , new Vector2Int(gridPos.x, gridPos.y), 1000);
             if (!roadPath.Any())
-            {
-                Debug.Log("Kein Pfad gefunden!");
                 return;
-            }
 
             DrawRoad();
-            // start = new Vector2Int(roadPath[0].X, roadPath[0].Y);
+            start = new Vector2Int(roadPath[0].X, roadPath[0].Y);
         }
     }
 

@@ -14,11 +14,26 @@ namespace pathfinding
         /// <summary>
         /// Abgeleitete Knotenpunkte des Graphen.
         /// </summary>
-        public Spot[,] Spots { get; set; }
+        public Graph graph;
 
         protected PathFindAlgorithm(Tilemap tilemap)
         {
-            Spots = Utils.TilemapToSpots(tilemap);
+            tilemap.CompressBounds();
+            BoundsInt bounds = tilemap.cellBounds;
+            Spot rootSpot = new Spot(bounds.xMin, bounds.yMin, tilemap.HasTile(new Vector3Int(bounds.xMin, bounds.yMin, 0)));
+
+            graph = new Graph(bounds.size.x + 1, bounds.size.y + 1, rootSpot); // Size + 1 da Length gebraucht wird
+
+            for (int x = bounds.xMin; x <= bounds.xMax; x++)
+            {
+                for (int y = bounds.yMin;  y <= bounds.yMax; y++)
+                {
+                    if (x == bounds.xMin && y == bounds.yMin) continue;
+                    graph.AddSpot(new Spot(x, y, tilemap.HasTile(new Vector3Int(x, y, 0))));
+                }
+            }
+
+            graph.AddNeighborsForAllSpots();
         }
 
         protected bool IsValidPath(Spot start, Spot end)
