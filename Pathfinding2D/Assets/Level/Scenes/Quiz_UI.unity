@@ -445,6 +445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCorrect: 0
   quizmanager: {fileID: 908578209}
+  startColor: {r: 0.8313726, g: 0.9215687, b: 0.38823533, a: 0}
 --- !u!1 &586058219
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,6 +763,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCorrect: 0
   quizmanager: {fileID: 908578209}
+  startColor: {r: 0.8313726, g: 0.9215687, b: 0.38823533, a: 0}
 --- !u!114 &797126784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1047,7 +1049,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.28235295}
   m_EffectDistance: {x: 10, y: -10}
-  m_UseGraphicAlpha: 1
+  m_UseGraphicAlpha: 0
 --- !u!114 &1058656413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1156,6 +1158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCorrect: 0
   quizmanager: {fileID: 908578209}
+  startColor: {r: 0.8313726, g: 0.9215687, b: 0.38823533, a: 1}
 --- !u!1 &1110714659
 GameObject:
   m_ObjectHideFlags: 0
@@ -1320,6 +1323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCorrect: 0
   quizmanager: {fileID: 908578209}
+  startColor: {r: 0.8313726, g: 0.9215687, b: 0.38823533, a: 0}
 --- !u!1 &1364416050
 GameObject:
   m_ObjectHideFlags: 0
