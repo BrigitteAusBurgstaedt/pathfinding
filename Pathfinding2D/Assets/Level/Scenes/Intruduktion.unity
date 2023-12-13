@@ -171,9 +171,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4031174983277146748, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
+      propertyPath: m_Text
+      value: Test Text
+      objectReference: {fileID: 0}
     - target: {fileID: 5489660090703904603, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
       propertyPath: m_Name
       value: TextBuble
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827247490959343577, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
+      propertyPath: carakter
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5827247490959343577, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
       propertyPath: textValue
