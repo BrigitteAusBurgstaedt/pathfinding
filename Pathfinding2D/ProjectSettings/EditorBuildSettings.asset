@@ -5,7 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Level/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Level/Scenes/Start.unity
+    guid: 635ff8e778c63dc4095710f81f87308d
+  - enabled: 1
+    path: Assets/Level/Scenes/Intruduktion.unity
+    guid: e290c8b1512256044b1aaf4e090ce71a
+  - enabled: 1
+    path: Assets/Level/Scenes/Map.unity
+    guid: a22a421905b8e0742af34c12add6f297
+  - enabled: 1
+    path: Assets/Level/Scenes/Quiz_UI.unity
+    guid: 2aad85bd310184ba08084243744aca4b
   m_configObjects: {}
