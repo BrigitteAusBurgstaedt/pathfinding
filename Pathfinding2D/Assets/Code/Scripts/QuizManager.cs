@@ -2,7 +2,6 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine.SceneManagement;
 
 public class QuizManager : MonoBehaviour
@@ -28,9 +27,9 @@ public class QuizManager : MonoBehaviour
 	}
 
 	public void retry()
-    {
+	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+	}
 
 	public void GameOver()
 	{
@@ -44,16 +43,22 @@ public class QuizManager : MonoBehaviour
 		//eine Antwort ist richtig
 		score += 1;
 		QnA.RemoveAt(currentQuestion);
-		generateQuestion();
+		StartCoroutine(waitForNext());
 	}
 
 	public void wrong()
-    {
+	{
 		//eine Antwort ist falsch
 		QnA.RemoveAt(currentQuestion);
-		generateQuestion();
+		StartCoroutine(waitForNext());
 
 	}
+
+	IEnumerator waitForNext()
+    {
+		yield return new WaitForSeconds(1);
+		generateQuestion();
+    }
 
 	void SetAnswers()
 	{
@@ -63,7 +68,9 @@ public class QuizManager : MonoBehaviour
 
 			options[i].transform.GetChild(0).GetComponent<Text>().text = QnA[currentQuestion].Answers[i];
 
-			if(QnA[currentQuestion].CorrectAnswer == i+1)
+			options[i].GetComponent<Image>().color = options[i].GetComponent<AnswerScript>().startColor;
+
+			if (QnA[currentQuestion].CorrectAnswer == i+1)
 			{
 				options[i].GetComponent<AnswerScript>().isCorrect = true;
 			}
