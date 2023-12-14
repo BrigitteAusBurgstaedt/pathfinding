@@ -1,0 +1,166 @@
+using System.Text;
+using UnityEngine;
+
+
+namespace pathfinding
+{
+    /// <summary>
+    /// Ein Graph enthält die Knoten (Spots)
+    /// Basis ist ein zweidimensionales Spot Array welches die Karte mit allen möglichen Pfaden widerspiegelt.
+    /// </summary>
+    public class Graph
+    {
+        /// <summary>
+        /// Gibt die Verschiebung zw. x-Koordinate und dem Index der 0. Dimension, notwendig da Indizes nicht negativ werden können, Koordinaten hingegen schon
+        /// </summary>
+        private readonly int _xOffset;
+
+        /// <summary>
+        /// Gibt die Verschiebung zw. y-Koordinate und dem Index der 1. Dimension, notwendig da Indizes nicht negativ werden können, Koordinaten hingegen schon
+        /// </summary>
+        private readonly int _yOffset;
+
+        /// <summary>
+        /// Grundstruktur des Graphen
+        /// </summary>
+        public Spot[,] spots {  get; private set; }
+
+        /// <summary>
+        /// Erstellt den Graphen und fügt den Wurzelknoten ein.
+        /// </summary>
+        /// <param name="lengthX">Breite der Karte bzw. des Graphen</param>
+        /// <param name="lengthY">Höhe der Karte bzw. des Graphen</param>
+        /// <param name="rootSpot">Wurzel Knoten der an der Stelle [0,0] eingefügt wird und für die Bestimmung des Offsets verwendet wird</param>
+        public Graph(int lengthX, int lengthY, Spot rootSpot)
+        {
+            spots = new Spot[lengthX, lengthY];
+            _xOffset = rootSpot.X;
+            _yOffset = rootSpot.Y;
+            AddSpot(rootSpot);
+        }
+
+        /// <summary>
+        /// Einen Knoten zu dem Graphen hinzufügen. Es wird geprüft ob der Spot in den Graphen passt, jedoch nicht ob schon ein Spot an der Stelle vorhanden ist.
+        /// </summary>
+        /// <param name="spot">Knoten welcher hinzugefügt werden soll</param>
+        public void AddSpot(Spot spot)
+        {
+            if (IsInGraph(spot))
+                spots[spot.X - _xOffset, spot.Y - _yOffset] = spot;
+            else
+                Debug.Log("Spot out of Range of the Graph." +
+                    " Index: " + (spot.X-_xOffset) + ", " + (spot.Y-_yOffset) + 
+                    " Bounds: " + spots.GetUpperBound(0) + ", " + spots.GetUpperBound(1));
+        }
+
+        /// <summary>
+        /// Einen Knoten aus dem Graphen auslesen. Es wird geprüft ob die Stelle im Graphen vorhanden ist.
+        /// </summary>
+        /// <param name="x">x-Koordinate</param>
+        /// <param name="y">y-Koordinate</param>
+        /// <returns>Den Knoten, oder null falls nicht vorhanden.</returns>
+        public Spot GetSpot(int x, int y)
+        {
+            if (IsInGraph(x,y))
+                return spots[x - _xOffset, y - _yOffset];
+
+            Debug.Log("Spot ausserhalb des Graphen");
+            return null;
+        }
+
+        /// <summary>
+        /// Prüft ob ein Knoten innerhalb Graphen liegt (für AddSpot())
+        /// </summary>
+        /// <param name="spot">Knoten der geprüft werden soll</param>
+        /// <returns>true wenn der Knoten sich im Graphen befindet, false sonst</returns>
+        private bool IsInGraph(Spot spot)
+        {
+            return IsInGraph(spot.X, spot.Y);
+        }
+
+        /// <summary>
+        /// Prüft ob ein Punkt innerhalb Graphen liegt (für GetSpot())
+        /// </summary>
+        /// <param name="x">x-Koordinate des Punkts</param>
+        /// <param name="y">y-Koordinate des Punkts</param>
+        /// <returns>true wenn der Punkt sich im Graphen befindet, false sonst</returns>
+        private bool IsInGraph(int x, int y)
+        {
+            return (x - _xOffset >= 0 
+                && x - _xOffset < spots.GetLength(0) 
+                && y - _yOffset >= 0 
+                && y - _yOffset < spots.GetLength(1));
+        }
+
+        /// <summary>
+        /// Für alle Knoten alle Nachbarn hinzufügen. Es sollten erst alle Knoten vorhanden sein.
+        /// </summary>
+        public void AddNeighborsForAllSpots()
+        {
+            for (int i = 0; i < spots.GetLength(0); i++)
+            {
+                for (int j = 0; j < spots.GetLength(1); j++)
+                {
+                    AddNeighbors(spots[i, j]);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Für einen Spot alle Nachbarn hinzufügen.
+        /// </summary>
+        /// <param name="spot">Spot dessen Nachbarn hinzugefügt werden sollen</param>
+        private void AddNeighbors(Spot spot)
+        {
+            int indexForX = spot.X - _xOffset;
+            int indexForY = spot.Y - _yOffset;
+            bool isOdd = (indexForY % 2 == 1);
+
+            if (indexForX < spots.GetUpperBound(0))                     // UpperBound = Length - 1
+                spot.Neighbors.Add(spots[indexForX + 1, indexForY]);    // rechts 
+            if (indexForX > 0)
+                spot.Neighbors.Add(spots[indexForX - 1, indexForY]);    // links 
+            if (indexForY < spots.GetUpperBound(1))
+                spot.Neighbors.Add(spots[indexForX, indexForY + 1]);    // oben links (für ungerade); oben rechts (sonst)
+            if (indexForY > 0)
+                spot.Neighbors.Add(spots[indexForX, indexForY - 1]);    // unten links (für ungerade); unten rechts (sonst)
+
+            if (isOdd)
+            {
+                if (indexForY < spots.GetUpperBound(1) && indexForX > 0)
+                    spot.Neighbors.Add(spots[indexForX - 1, indexForY + 1]); // oben links 
+                if (indexForY > 0 && indexForX > 0)
+                    spot.Neighbors.Add(spots[indexForX - 1, indexForY - 1]); // unten links 
+            }
+            else
+            {
+                if (indexForY < spots.GetUpperBound(1) && indexForX < spots.GetUpperBound(0))
+                    spot.Neighbors.Add(spots[indexForX + 1, indexForY + 1]); // oben rechts 
+                if (indexForY > 0 && indexForX < spots.GetUpperBound(0))
+                    spot.Neighbors.Add(spots[indexForX + 1, indexForY - 1]); // unten rechts 
+            }
+
+            // spot.PrintNeighbors(); Debugging
+        }
+
+        /// <summary>
+        /// Debug Methode die alle Knoten im Graphen ausgibt
+        /// </summary>
+        public void PrintSpots()
+        {
+            StringBuilder sb = new StringBuilder("Spots:\n");
+
+            for (int i = 0; i < spots.GetLength(0); i++)
+            {
+                for (int j = 0; j < spots.GetLength(1); j++)
+                {
+                    sb.Append("\t(i: " + i + ", j: " + j + ", x: " + spots[i, j].X + ", y: " + spots[i, j].Y + ")");
+                }
+                sb.Append('\n');
+            }
+
+            Debug.Log(sb.ToString());
+        }
+    }
+
+}

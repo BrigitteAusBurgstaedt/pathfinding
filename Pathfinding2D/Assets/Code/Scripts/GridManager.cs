@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using pathfinding;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -9,80 +12,58 @@ public class GridManager : MonoBehaviour
     public Tilemap roadMap;
     public TileBase roadTile;
     public Vector3Int[,] spots;
-    Astar astar;
+    PathFindAlgorithm pathFindAlgorithm;
     List<Spot> roadPath = new List<Spot>();
     new Camera camera;
-    BoundsInt bounds;
+    public Vector2Int start;
+
     // Start is called before the first frame update
     void Start()
     {
-        tilemap.CompressBounds();
         roadMap.CompressBounds();
-        bounds = tilemap.cellBounds;
         camera = Camera.main;
 
+        pathFindAlgorithm = new BreadthFirst(tilemap);
+    }
 
-        CreateGrid();
-        astar = new Astar(spots, bounds.size.x, bounds.size.y);
-    }
-    public void CreateGrid()
-    {
-        spots = new Vector3Int[bounds.size.x, bounds.size.y];
-        for (int x = bounds.xMin, i = 0; i < (bounds.size.x); x++, i++)
-        {
-            for (int y = bounds.yMin, j = 0; j < (bounds.size.y); y++, j++)
-            {
-                if (tilemap.HasTile(new Vector3Int(x, y, 0)))
-                {
-                    spots[i, j] = new Vector3Int(x, y, 0);
-                }
-                else
-                {
-                    spots[i, j] = new Vector3Int(x, y, 1);
-                }
-            }
-        }
-    }
-    private void DrawRoad()
-    {
-        for (int i = 0; i < roadPath.Count; i++)
-        {
-            roadMap.SetTile(new Vector3Int(roadPath[i].X, roadPath[i].Y, 0), roadTile);
-        }
-    }
     // Update is called once per frame
-    public Vector2Int start;
     void Update()
     {
-
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1)) // Rechte Maustaste betätigt -> Start an Position setzten
         {
             Vector3 world = camera.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int gridPos = tilemap.WorldToCell(world);
             start = new Vector2Int(gridPos.x, gridPos.y);
         }
-        if (Input.GetMouseButton(2))
+        if (Input.GetMouseButton(2)) // Mittlere Maustaste betätigt -> Road an Position löschen
         {
             Vector3 world = camera.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int gridPos = tilemap.WorldToCell(world);
             roadMap.SetTile(new Vector3Int(gridPos.x, gridPos.y, 0), null);
         }
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0)) // Linke Maustaste betätigt -> Pfad zur Position Zeichnen
         {
-            CreateGrid();
-
             Vector3 world = camera.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int gridPos = tilemap.WorldToCell(world);
 
-            if (roadPath != null && roadPath.Count > 0)
+            if (roadPath != null && roadPath.Count > 0) // Löschen der alten Pfadliste
                 roadPath.Clear();
 
-            roadPath = astar.CreatePath(spots, start, new Vector2Int(gridPos.x, gridPos.y), 1000);
-            if (roadPath == null)
+            pathFindAlgorithm.LoadGraph(tilemap); // TODO Übergangslösung verbessern (löst das Memory Problem)
+            roadPath = pathFindAlgorithm.CreatePath(start , new Vector2Int(gridPos.x, gridPos.y));
+            if (!roadPath.Any())
                 return;
 
             DrawRoad();
             start = new Vector2Int(roadPath[0].X, roadPath[0].Y);
+        }
+    }
+
+    private void DrawRoad()
+    {
+        for (int i = 0; i < roadPath.Count; i++)
+        {
+            roadMap.SetTile(new Vector3Int(roadPath[i].X, roadPath[i].Y, 0), roadTile);
         }
     }
 }
