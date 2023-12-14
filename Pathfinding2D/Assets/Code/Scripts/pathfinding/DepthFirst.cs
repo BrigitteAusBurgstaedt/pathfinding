@@ -8,10 +8,10 @@ using UnityEngine.UIElements;
 
 namespace pathfinding
 {
-    public class Breitensuche : PathFindAlgorithm
+    public class DepthFirst : PathFindAlgorithm
     {
 
-        public Breitensuche(Tilemap tilemap) : base(tilemap) { }
+        public DepthFirst(Tilemap tilemap) : base(tilemap) { }
 
         public override List<Spot> CreatePath(Spot start, Spot end, int maxLength)
         {

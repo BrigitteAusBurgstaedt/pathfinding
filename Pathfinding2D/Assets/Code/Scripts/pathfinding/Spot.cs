@@ -35,6 +35,7 @@ namespace pathfinding
                 _h = value;
             }
         } // Geschätzte Kosten bis zum Ziel, beim Setzen wird F automatisch berechnet
+        public bool Visited { get; set; } = false; // Gibt an ob der Knoten schon besucht wurde
         public bool IsWalkable { get; set; } = false;
         public List<Spot> Neighbors { get; set; }
         public Spot Previous { get; set; } = null;
