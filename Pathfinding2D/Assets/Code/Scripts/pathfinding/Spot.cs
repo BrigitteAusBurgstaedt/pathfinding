@@ -14,9 +14,24 @@ namespace pathfinding
     /// </summary>
     public class Spot
     {
-        public int X { get; set; } // x-Koordinate im HexGrid
-        public int Y { get; set; } // x-Koordinate im HexGrid
-        public int F { get => _f; } // Gesamt Kosten
+        /// <summary>
+        /// x-Koordinate im HexGrid
+        /// </summary>
+        public int X { get; set; }
+
+        /// <summary>
+        /// y-Koordinate im HexGrid
+        /// </summary>
+        public int Y { get; set; }
+
+        /// <summary>
+        /// Gesamt Kosten, wird automatisch beim Setzen von G berechnet
+        /// </summary>
+        public int F { get => _f; }
+
+        /// <summary>
+        /// Kosten bis zum Knoten, beim Setzen wird F automatisch berechnet
+        /// </summary>
         public int G 
         {
             get => _g;
@@ -25,7 +40,11 @@ namespace pathfinding
                 _f = _h + value;
                 _g = value;
             } 
-        } // Kosten bis zum Knoten, beim Setzen wird F automatisch berechnet
+        }
+
+        /// <summary>
+        /// Geschätzte Kosten bis zum Ziel, beim Setzen wird F automatisch berechnet
+        /// </summary>
         public int H 
         { 
             get => _h;
@@ -34,8 +53,16 @@ namespace pathfinding
                 _f = _h + value;
                 _h = value;
             }
-        } // Geschätzte Kosten bis zum Ziel, beim Setzen wird F automatisch berechnet
-        public bool Visited { get; set; } = false; // Gibt an ob der Knoten schon besucht wurde
+        }
+
+        /// <summary>
+        /// Gibt an ob der Knoten schon besucht wurde
+        /// </summary>
+        public bool Visited { get; set; } = false;
+
+        /// <summary>
+        /// Gibt an ob der Knoten begehbar ist
+        /// </summary>
         public bool IsWalkable { get; set; } = false;
         public List<Spot> Neighbors { get; set; }
         public Spot Previous { get; set; } = null;

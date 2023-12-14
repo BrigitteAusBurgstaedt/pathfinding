@@ -10,11 +10,27 @@ namespace pathfinding
     /// </summary>
     public class Graph
     {
-        private readonly int _xOffset;   // Gibt die Verschiebung zw. x-Koordinate und dem Index der 0. Dimension
-        private readonly int _yOffset;   // Gibt die Verschiebung zw. y-Koordinate und dem Index der 1. Dimension
-        // notwendig da Indizes nicht negativ werden können, Koordinaten hingegen schon.
-        public Spot[,] spots;
+        /// <summary>
+        /// Gibt die Verschiebung zw. x-Koordinate und dem Index der 0. Dimension, notwendig da Indizes nicht negativ werden können, Koordinaten hingegen schon
+        /// </summary>
+        private readonly int _xOffset;
 
+        /// <summary>
+        /// Gibt die Verschiebung zw. y-Koordinate und dem Index der 1. Dimension, notwendig da Indizes nicht negativ werden können, Koordinaten hingegen schon
+        /// </summary>
+        private readonly int _yOffset;
+
+        /// <summary>
+        /// Grundstruktur des Graphen
+        /// </summary>
+        public Spot[,] spots {  get; private set; }
+
+        /// <summary>
+        /// Erstellt den Graphen und fügt den Wurzelknoten ein.
+        /// </summary>
+        /// <param name="lengthX">Breite der Karte bzw. des Graphen</param>
+        /// <param name="lengthY">Höhe der Karte bzw. des Graphen</param>
+        /// <param name="rootSpot">Wurzel Knoten der an der Stelle [0,0] eingefügt wird und für die Bestimmung des Offsets verwendet wird</param>
         public Graph(int lengthX, int lengthY, Spot rootSpot)
         {
             spots = new Spot[lengthX, lengthY];
@@ -24,9 +40,9 @@ namespace pathfinding
         }
 
         /// <summary>
-        /// Einen Spot zu dem Graphen hinzufügen. Es wird geprüft ob der Spot in den Graphen passt, jedoch nicht ob schon ein Spot an der Stelle vorhanden ist.
+        /// Einen Knoten zu dem Graphen hinzufügen. Es wird geprüft ob der Spot in den Graphen passt, jedoch nicht ob schon ein Spot an der Stelle vorhanden ist.
         /// </summary>
-        /// <param name="spot"></param>
+        /// <param name="spot">Knoten welcher hinzugefügt werden soll</param>
         public void AddSpot(Spot spot)
         {
             if (IsInGraph(spot))
@@ -37,6 +53,12 @@ namespace pathfinding
                     " Bounds: " + spots.GetUpperBound(0) + ", " + spots.GetUpperBound(1));
         }
 
+        /// <summary>
+        /// Einen Knoten aus dem Graphen auslesen. Es wird geprüft ob die Stelle im Graphen vorhanden ist.
+        /// </summary>
+        /// <param name="x">x-Koordinate</param>
+        /// <param name="y">y-Koordinate</param>
+        /// <returns>Den Knoten, oder null falls nicht vorhanden.</returns>
         public Spot GetSpot(int x, int y)
         {
             if (IsInGraph(x,y))
@@ -46,11 +68,22 @@ namespace pathfinding
             return null;
         }
 
+        /// <summary>
+        /// Prüft ob ein Knoten innerhalb Graphen liegt (für AddSpot())
+        /// </summary>
+        /// <param name="spot">Knoten der geprüft werden soll</param>
+        /// <returns>true wenn der Knoten sich im Graphen befindet, false sonst</returns>
         private bool IsInGraph(Spot spot)
         {
             return IsInGraph(spot.X, spot.Y);
         }
 
+        /// <summary>
+        /// Prüft ob ein Punkt innerhalb Graphen liegt (für GetSpot())
+        /// </summary>
+        /// <param name="x">x-Koordinate des Punkts</param>
+        /// <param name="y">y-Koordinate des Punkts</param>
+        /// <returns>true wenn der Punkt sich im Graphen befindet, false sonst</returns>
         private bool IsInGraph(int x, int y)
         {
             return (x - _xOffset >= 0 
@@ -59,6 +92,9 @@ namespace pathfinding
                 && y - _yOffset < spots.GetLength(1));
         }
 
+        /// <summary>
+        /// Für alle Knoten alle Nachbarn hinzufügen. Es sollten erst alle Knoten vorhanden sein.
+        /// </summary>
         public void AddNeighborsForAllSpots()
         {
             for (int i = 0; i < spots.GetLength(0); i++)

@@ -43,11 +43,11 @@ namespace pathfinding
 
 
                 //Finds the next closest step on the grid
-                var neighboors = current.Neighbors;
-                for (int i = 0; i < neighboors.Count; i++)//look through our current spots neighboors (current spot is the shortest F distance in openSet)
+                var neighbors = current.Neighbors;
+                for (int i = 0; i < neighbors.Count; i++)//look through our current spots neighbors (current spot is the shortest F distance in openSet)
                 {
-                    var n = neighboors[i];
-                    if (!ClosedSet.Contains(n) && n.IsWalkable)//Checks to make sure the neighboor of our current tile is not within closed set, and has a height of less than 1
+                    var n = neighbors[i];
+                    if (!ClosedSet.Contains(n) && n.IsWalkable)//Checks to make sure the neighbor of our current tile is not within closed set, and has a height of less than 1
                     {
                         var tempG = current.G + 1;//gets a temp comparison integer for seeing if a route is shorter than our current path
 
@@ -89,7 +89,7 @@ namespace pathfinding
 
             var dx = Math.Abs(a.X - b.X);
             var dy = Math.Abs(a.Y - b.Y);
-            return 1 * Math.Max(dx, dy); // nicht perfekt funktioniert aber
+            return Math.Max(dx, dy); // nicht perfekt funktioniert aber
         }
     }
 }
