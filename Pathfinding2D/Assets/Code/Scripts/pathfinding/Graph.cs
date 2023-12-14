@@ -71,7 +71,7 @@ namespace pathfinding
         }
 
         /// <summary>
-        /// Für einen Spot alle Nachbarn hinzufügen
+        /// Für einen Spot alle Nachbarn hinzufügen.
         /// </summary>
         /// <param name="spot">Spot dessen Nachbarn hinzugefügt werden sollen</param>
         private void AddNeighbors(Spot spot)
@@ -104,9 +104,12 @@ namespace pathfinding
                     spot.Neighbors.Add(spots[indexForX + 1, indexForY - 1]); // unten rechts 
             }
 
-            spot.PrintNeighbors();
+            // spot.PrintNeighbors(); Debugging
         }
 
+        /// <summary>
+        /// Debug Methode die alle Knoten im Graphen ausgibt
+        /// </summary>
         public void PrintSpots()
         {
             StringBuilder sb = new StringBuilder("Spots:\n");

@@ -13,7 +13,7 @@ namespace pathfinding
 
         public DepthFirst(Tilemap tilemap) : base(tilemap) { }
 
-        public override List<Spot> CreatePath(Spot start, Spot end, int maxLength)
+        protected override bool SearchPath(Spot start, Spot end)
         {
             throw new NotImplementedException();
         }

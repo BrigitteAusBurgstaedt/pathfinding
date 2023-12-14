@@ -13,22 +13,8 @@ namespace pathfinding
 
         public Astar(Tilemap tilemap) : base(tilemap) { }
 
-        public List<Spot> CreatePath(Vector2Int start, Vector2Int end, int maxLength)
+        protected override bool SearchPath(Spot start, Spot end)
         {
-            return CreatePath(graph.GetSpot(start.x, start.y), graph.GetSpot(end.x, end.y), maxLength); 
-        }
-
-        public override List<Spot> CreatePath(Spot start, Spot end, int maxLength)
-        {
-            // TODO: Fix Memory problem!!!
-
-            if (!IsValidPath(start, end))
-            {
-                Debug.Log("Kein valider Pfad!");
-                return new List<Spot>();
-            }
-          
-
             List<Spot> OpenSet = new List<Spot>();
             List<Spot> ClosedSet = new List<Spot>();
 
@@ -47,21 +33,9 @@ namespace pathfinding
                 var current = OpenSet[winner];
 
                 //Found the path, creates and returns the path
-                if (OpenSet[winner] == end)
+                if (OpenSet[winner].Equals(end))
                 {
-                    List<Spot> Path = new List<Spot>();
-                    var temp = current;
-                    Path.Add(temp);
-                    while (temp.Previous != null)
-                    {
-                        Path.Add(temp.Previous);
-                        temp = temp.Previous;
-                    }
-                    if (maxLength - (Path.Count - 1) < 0)
-                    {
-                        Path.RemoveRange(0, (Path.Count - 1) - maxLength);
-                    }
-                    return Path;
+                    return true;
                 }
 
                 OpenSet.Remove(current);
@@ -103,7 +77,7 @@ namespace pathfinding
             }
 
             Debug.Log("Keinen Pfad gefunden!");
-            return new List<Spot>();
+            return false;
         }
 
         private int Heuristic(Spot a, Spot b)

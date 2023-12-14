@@ -12,7 +12,7 @@ public class GridManager : MonoBehaviour
     public Tilemap roadMap;
     public TileBase roadTile;
     public Vector3Int[,] spots;
-    Astar astar;
+    PathFindAlgorithm pathFindAlgorithm;
     List<Spot> roadPath = new List<Spot>();
     new Camera camera;
     public Vector2Int start;
@@ -23,7 +23,7 @@ public class GridManager : MonoBehaviour
         roadMap.CompressBounds();
         camera = Camera.main;
 
-        astar = new Astar(tilemap);
+        pathFindAlgorithm = new BreadthFirst(tilemap);
     }
 
     // Update is called once per frame
@@ -49,7 +49,8 @@ public class GridManager : MonoBehaviour
             if (roadPath != null && roadPath.Count > 0) // Löschen der alten Pfadliste
                 roadPath.Clear();
 
-            roadPath = astar.CreatePath(start , new Vector2Int(gridPos.x, gridPos.y), 1000);
+            pathFindAlgorithm.LoadGraph(tilemap); // TODO Übergangslösung verbessern (löst das Memory Problem)
+            roadPath = pathFindAlgorithm.CreatePath(start , new Vector2Int(gridPos.x, gridPos.y));
             if (!roadPath.Any())
                 return;
 

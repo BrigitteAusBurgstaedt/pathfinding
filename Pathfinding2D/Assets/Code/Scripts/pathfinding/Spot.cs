@@ -54,6 +54,9 @@ namespace pathfinding
             IsWalkable = isWalkable;
         }
 
+        /// <summary>
+        /// Debug Methode die alle Nachbarn eines Spots ausgibt.
+        /// </summary>
         public void PrintNeighbors()
         {
             StringBuilder sb = new StringBuilder("Spot(" + this.X + ", " + this.Y + ") \nNachbarn:\n");

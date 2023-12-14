@@ -13,7 +13,7 @@ namespace pathfinding
 
         public BreadthFirst(Tilemap tilemap) : base(tilemap) { }
 
-        public override List<Spot> CreatePath(Spot start, Spot end, int maxLength)
+        protected override bool SearchPath(Spot start, Spot end)
         {
             List<Spot> waitList = new List<Spot>(); // Enthält die Liste der Knoten die Noch Bearbeitet werden müssen
             start.Visited = true;
@@ -23,7 +23,13 @@ namespace pathfinding
             {
                 Spot firstSpotInWaitList = waitList[0];
                 waitList.RemoveAt(0);
-                foreach(Spot s in firstSpotInWaitList.Neighbors)
+
+                if (firstSpotInWaitList.Equals(end))
+                {
+                    return true;
+                }
+
+                foreach (Spot s in firstSpotInWaitList.Neighbors)
                 {
                     if (!s.Visited)
                     {
@@ -34,7 +40,7 @@ namespace pathfinding
                 }
             }
 
-            // TODO Pfad bilden über Previous, Ende festlegen
+            return false;
         }
     }
 }
