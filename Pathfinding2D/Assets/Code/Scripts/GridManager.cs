@@ -23,7 +23,7 @@ public class GridManager : MonoBehaviour
         roadMap.CompressBounds();
         camera = Camera.main;
 
-        pathFindAlgorithm = new BreadthFirst(tilemap);
+        pathFindAlgorithm = new DepthFirst(tilemap);
     }
 
     // Update is called once per frame
