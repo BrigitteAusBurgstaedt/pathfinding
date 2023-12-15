@@ -15,22 +15,24 @@ namespace pathfinding
         {
             start.Visited = true;
 
+            if (start.Equals(end))
+            {
+                return true;
+            }
 
-                if (start.Equals(end))
+            for (int i = 0; i < start.Neighbors.Count; i++)
+            {
+                Spot neighbor = start.Neighbors[i];
+                if (!neighbor.Visited && neighbor.IsWalkable)
                 {
-                    return true;
-                }
-
-                for (int i = 0; i < start.Neighbors.Count; i++)
-                {
-                    if (!start.Neighbors[i].Visited)
+                    if (SearchPath(start.Neighbors[i], end))
                     {
-                        if (start.Neighbors[i].IsWalkable)
-                        {
-                            SearchPath(start.Neighbors[i], end);
-                        }
+                        start.Neighbors[i].Previous = start;
+                        return true;
                     }
+                        
                 }
+            }
 
             return false;
 
