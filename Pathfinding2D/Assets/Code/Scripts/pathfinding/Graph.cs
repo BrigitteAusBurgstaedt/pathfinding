@@ -23,7 +23,7 @@ namespace pathfinding
         /// <summary>
         /// Grundstruktur des Graphen
         /// </summary>
-        public Spot[,] spots {  get; private set; }
+        public Spot[,] Spots {  get; private set; }
 
         /// <summary>
         /// Erstellt den Graphen und fügt den Wurzelknoten ein.
@@ -33,7 +33,7 @@ namespace pathfinding
         /// <param name="rootSpot">Wurzel Knoten der an der Stelle [0,0] eingefügt wird und für die Bestimmung des Offsets verwendet wird</param>
         public Graph(int lengthX, int lengthY, Spot rootSpot)
         {
-            spots = new Spot[lengthX, lengthY];
+            Spots = new Spot[lengthX, lengthY];
             _xOffset = rootSpot.X;
             _yOffset = rootSpot.Y;
             AddSpot(rootSpot);
@@ -46,11 +46,11 @@ namespace pathfinding
         public void AddSpot(Spot spot)
         {
             if (IsInGraph(spot))
-                spots[spot.X - _xOffset, spot.Y - _yOffset] = spot;
+                Spots[spot.X - _xOffset, spot.Y - _yOffset] = spot;
             else
                 Debug.Log("Spot out of Range of the Graph." +
                     " Index: " + (spot.X-_xOffset) + ", " + (spot.Y-_yOffset) + 
-                    " Bounds: " + spots.GetUpperBound(0) + ", " + spots.GetUpperBound(1));
+                    " Bounds: " + Spots.GetUpperBound(0) + ", " + Spots.GetUpperBound(1));
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace pathfinding
         public Spot GetSpot(int x, int y)
         {
             if (IsInGraph(x,y))
-                return spots[x - _xOffset, y - _yOffset];
+                return Spots[x - _xOffset, y - _yOffset];
 
             Debug.Log("Spot ausserhalb des Graphen");
             return null;
@@ -87,9 +87,9 @@ namespace pathfinding
         private bool IsInGraph(int x, int y)
         {
             return (x - _xOffset >= 0 
-                && x - _xOffset < spots.GetLength(0) 
+                && x - _xOffset < Spots.GetLength(0) 
                 && y - _yOffset >= 0 
-                && y - _yOffset < spots.GetLength(1));
+                && y - _yOffset < Spots.GetLength(1));
         }
 
         /// <summary>
@@ -97,11 +97,11 @@ namespace pathfinding
         /// </summary>
         public void AddNeighborsForAllSpots()
         {
-            for (int i = 0; i < spots.GetLength(0); i++)
+            for (int i = 0; i < Spots.GetLength(0); i++)
             {
-                for (int j = 0; j < spots.GetLength(1); j++)
+                for (int j = 0; j < Spots.GetLength(1); j++)
                 {
-                    AddNeighbors(spots[i, j]);
+                    AddNeighbors(Spots[i, j]);
                 }
             }
         }
@@ -119,26 +119,26 @@ namespace pathfinding
             int indexForY = spot.Y - _yOffset;
             bool isOdd = (indexForY % 2 == 1);
 
-            if (indexForX < spots.GetUpperBound(0))                         // UpperBound == Length - 1
-                spot.Neighbors.Add(spots[indexForX + 1, indexForY]);        // 1. rechts 
+            if (indexForX < Spots.GetUpperBound(0))                         // UpperBound == Length - 1
+                spot.Neighbors.Add(Spots[indexForX + 1, indexForY]);        // 1. rechts 
             if (indexForY > 0 && isOdd)
-                spot.Neighbors.Add(spots[indexForX, indexForY - 1]);        // 2. unten rechts (für ungerade)
-            else if (indexForY > 0 && indexForX < spots.GetUpperBound(0))
-                spot.Neighbors.Add(spots[indexForX + 1, indexForY - 1]);    // 2. unten rechts (für gerade)
+                spot.Neighbors.Add(Spots[indexForX, indexForY - 1]);        // 2. unten rechts (für ungerade)
+            else if (indexForY > 0 && indexForX < Spots.GetUpperBound(0))
+                spot.Neighbors.Add(Spots[indexForX + 1, indexForY - 1]);    // 2. unten rechts (für gerade)
             if (indexForY > 0 && !isOdd)
-                spot.Neighbors.Add(spots[indexForX, indexForY - 1]);        // 3. unten links (für gerade)
+                spot.Neighbors.Add(Spots[indexForX, indexForY - 1]);        // 3. unten links (für gerade)
             else if (indexForY > 0 && indexForX > 0)
-                spot.Neighbors.Add(spots[indexForX - 1, indexForY - 1]);    // 3. unten links (für ungerade)
+                spot.Neighbors.Add(Spots[indexForX - 1, indexForY - 1]);    // 3. unten links (für ungerade)
             if (indexForX > 0)
-                spot.Neighbors.Add(spots[indexForX - 1, indexForY]);        // 4. links 
-            if (indexForY < spots.GetUpperBound(1) && !isOdd)
-                spot.Neighbors.Add(spots[indexForX, indexForY + 1]);        // 5. oben links (für gerade)
-            else if (indexForY < spots.GetUpperBound(1) && indexForX > 0)
-                spot.Neighbors.Add(spots[indexForX - 1, indexForY + 1]);    // 5. oben links (für ungerade)
-            if (indexForY < spots.GetUpperBound(1) && isOdd)
-                spot.Neighbors.Add(spots[indexForX, indexForY + 1]);        // 6. oben rechts (für ungerade)
-            else if (indexForY < spots.GetUpperBound(1) && indexForX < spots.GetUpperBound(0))
-                spot.Neighbors.Add(spots[indexForX + 1, indexForY + 1]);    // 6. oben rechts (für gerade)
+                spot.Neighbors.Add(Spots[indexForX - 1, indexForY]);        // 4. links 
+            if (indexForY < Spots.GetUpperBound(1) && !isOdd)
+                spot.Neighbors.Add(Spots[indexForX, indexForY + 1]);        // 5. oben links (für gerade)
+            else if (indexForY < Spots.GetUpperBound(1) && indexForX > 0)
+                spot.Neighbors.Add(Spots[indexForX - 1, indexForY + 1]);    // 5. oben links (für ungerade)
+            if (indexForY < Spots.GetUpperBound(1) && isOdd)
+                spot.Neighbors.Add(Spots[indexForX, indexForY + 1]);        // 6. oben rechts (für ungerade)
+            else if (indexForY < Spots.GetUpperBound(1) && indexForX < Spots.GetUpperBound(0))
+                spot.Neighbors.Add(Spots[indexForX + 1, indexForY + 1]);    // 6. oben rechts (für gerade)
 
             // spot.PrintNeighbors(); Debugging
         }
@@ -150,11 +150,11 @@ namespace pathfinding
         {
             StringBuilder sb = new StringBuilder("Spots:\n");
 
-            for (int i = 0; i < spots.GetLength(0); i++)
+            for (int i = 0; i < Spots.GetLength(0); i++)
             {
-                for (int j = 0; j < spots.GetLength(1); j++)
+                for (int j = 0; j < Spots.GetLength(1); j++)
                 {
-                    sb.Append("\t(i: " + i + ", j: " + j + ", x: " + spots[i, j].X + ", y: " + spots[i, j].Y + ")");
+                    sb.Append("\t(i: " + i + ", j: " + j + ", x: " + Spots[i, j].X + ", y: " + Spots[i, j].Y + ")");
                 }
                 sb.Append('\n');
             }
