@@ -107,7 +107,10 @@ namespace pathfinding
         }
 
         /// <summary>
-        /// Für einen Spot alle Nachbarn hinzufügen.
+        /// Für einen Spot alle Nachbarn hinzufügen. Der erste Nachbarknoten ist rechts vom Ausgangsknoten. Die folgenden Nachbarn werden mit dem Uhrzeigersinn hinzugefügt:
+        ///       5   6
+        ///     4   K   1
+        ///       3   2
         /// </summary>
         /// <param name="spot">Spot dessen Nachbarn hinzugefügt werden sollen</param>
         private void AddNeighbors(Spot spot)
@@ -116,29 +119,26 @@ namespace pathfinding
             int indexForY = spot.Y - _yOffset;
             bool isOdd = (indexForY % 2 == 1);
 
-            if (indexForX < spots.GetUpperBound(0))                     // UpperBound = Length - 1
-                spot.Neighbors.Add(spots[indexForX + 1, indexForY]);    // rechts 
+            if (indexForX < spots.GetUpperBound(0))                         // UpperBound == Length - 1
+                spot.Neighbors.Add(spots[indexForX + 1, indexForY]);        // 1. rechts 
+            if (indexForY > 0 && isOdd)
+                spot.Neighbors.Add(spots[indexForX, indexForY - 1]);        // 2. unten rechts (für ungerade)
+            else if (indexForY > 0 && indexForX < spots.GetUpperBound(0))
+                spot.Neighbors.Add(spots[indexForX + 1, indexForY - 1]);    // 2. unten rechts (für gerade)
+            if (indexForY > 0 && !isOdd)
+                spot.Neighbors.Add(spots[indexForX, indexForY - 1]);        // 3. unten links (für gerade)
+            else if (indexForY > 0 && indexForX > 0)
+                spot.Neighbors.Add(spots[indexForX - 1, indexForY - 1]);    // 3. unten links (für ungerade)
             if (indexForX > 0)
-                spot.Neighbors.Add(spots[indexForX - 1, indexForY]);    // links 
-            if (indexForY < spots.GetUpperBound(1))
-                spot.Neighbors.Add(spots[indexForX, indexForY + 1]);    // oben links (für ungerade); oben rechts (sonst)
-            if (indexForY > 0)
-                spot.Neighbors.Add(spots[indexForX, indexForY - 1]);    // unten links (für ungerade); unten rechts (sonst)
-
-            if (isOdd)
-            {
-                if (indexForY < spots.GetUpperBound(1) && indexForX > 0)
-                    spot.Neighbors.Add(spots[indexForX - 1, indexForY + 1]); // oben links 
-                if (indexForY > 0 && indexForX > 0)
-                    spot.Neighbors.Add(spots[indexForX - 1, indexForY - 1]); // unten links 
-            }
-            else
-            {
-                if (indexForY < spots.GetUpperBound(1) && indexForX < spots.GetUpperBound(0))
-                    spot.Neighbors.Add(spots[indexForX + 1, indexForY + 1]); // oben rechts 
-                if (indexForY > 0 && indexForX < spots.GetUpperBound(0))
-                    spot.Neighbors.Add(spots[indexForX + 1, indexForY - 1]); // unten rechts 
-            }
+                spot.Neighbors.Add(spots[indexForX - 1, indexForY]);        // 4. links 
+            if (indexForY < spots.GetUpperBound(1) && !isOdd)
+                spot.Neighbors.Add(spots[indexForX, indexForY + 1]);        // 5. oben links (für gerade)
+            else if (indexForY < spots.GetUpperBound(1) && indexForX > 0)
+                spot.Neighbors.Add(spots[indexForX - 1, indexForY + 1]);    // 5. oben links (für ungerade)
+            if (indexForY < spots.GetUpperBound(1) && isOdd)
+                spot.Neighbors.Add(spots[indexForX, indexForY + 1]);        // 6. oben rechts (für ungerade)
+            else if (indexForY < spots.GetUpperBound(1) && indexForX < spots.GetUpperBound(0))
+                spot.Neighbors.Add(spots[indexForX + 1, indexForY + 1]);    // 6. oben rechts (für gerade)
 
             // spot.PrintNeighbors(); Debugging
         }
