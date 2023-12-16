@@ -31,7 +31,7 @@ namespace pathfinding
             roadMap.CompressBounds();
             camera = Camera.main;
 
-            pathFindAlgorithm = new BreadthFirst(tilemap);
+            pathFindAlgorithm = new DepthFirst(tilemap);
         }
 
         // Update is called once per frame
@@ -76,7 +76,7 @@ namespace pathfinding
                     if (time < 0f)
                     {
                         DrawVisitedIteration();
-                        time = 0.5f;
+                        time = 0.1f;
                     }
                 } else 
                 {

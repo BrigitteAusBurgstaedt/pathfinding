@@ -14,7 +14,10 @@ namespace pathfinding
         protected override bool SearchPath(Spot start, Spot end)
         {
             if (start.Visited == 0) // Aller erster Startknoten
+            {
                 start.Visited = 1;
+                Iterations.Add(new List<Spot> { start }); // nur für Visuals
+            }
 
             if (start.Equals(end))  // Abbruchbedingung
             {
@@ -26,6 +29,8 @@ namespace pathfinding
                 if (start.Neighbors[i].IsWalkable && start.Neighbors[i].Visited == 0)
                 {
                     start.Neighbors[i].Visited = start.Visited + 1;
+                    Iterations.Add(new List<Spot> { start.Neighbors[i] }); // nur für Visuals
+                    
                     if (SearchPath(start.Neighbors[i], end))    // Rekursivschritt
                     {
                         start.Neighbors[i].Previous = start;
