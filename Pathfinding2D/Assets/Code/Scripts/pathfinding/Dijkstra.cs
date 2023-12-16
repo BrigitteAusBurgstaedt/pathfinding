@@ -11,14 +11,14 @@ namespace pathfinding
         protected override bool SearchPath(Spot start, Spot end)
         {
             List<Spot> waitList = new List<Spot>(); // Enthält die Liste der Knoten die Noch Bearbeitet werden müssen
-            for (int i = 0; i < graph.spots.GetLength(0); i++)
+            for (int i = 0; i < Graph.Spots.GetLength(0); i++)
             {
-                for (int j = 0; j < graph.spots.GetLength(1); j++)
+                for (int j = 0; j < Graph.Spots.GetLength(1); j++)
                 {
-                    waitList.Add(graph.spots[i, j]);
+                    waitList.Add(Graph.Spots[i, j]);
                 }
             }
-            start.Visited = true;
+            start.Visited = 1;
             Initialize(start);
 
             while (waitList.Any())
@@ -35,17 +35,13 @@ namespace pathfinding
                 foreach (Spot s in nearest.Neighbors)
                 {
 
-                    if (waitList.Contains(s)) // Vgl Visited
+                    if (s.IsWalkable && waitList.Contains(s)) // Vgl Visited
                     {
-                        if (s.IsWalkable)
+                        int tmp = nearest.Distance + s.Cost;
+                        if (tmp < s.Distance)
                         {
-                            int tmp = nearest.Distance + s.Cost;
-                            if (tmp < s.Distance)
-                            {
-                                s.Distance = tmp;
-                                s.Previous = nearest;
-                            }
-
+                            s.Distance = tmp;
+                            s.Previous = nearest;
                         }
                     }
                 }
