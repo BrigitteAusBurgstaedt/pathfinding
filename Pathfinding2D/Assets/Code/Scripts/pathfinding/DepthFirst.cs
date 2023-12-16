@@ -13,19 +13,20 @@ namespace pathfinding
 
         protected override bool SearchPath(Spot start, Spot end)
         {
-            start.Visited = true;
+            if (start.Visited == 0) // Aller erster Startknoten
+                start.Visited = 1;
 
-            if (start.Equals(end))
+            if (start.Equals(end))  // Abbruchbedingung
             {
                 return true;
             }
 
             for (int i = 0; i < start.Neighbors.Count; i++)
             {
-                Spot neighbor = start.Neighbors[i];
-                if (!neighbor.Visited && neighbor.IsWalkable)
+                if (start.Neighbors[i].IsWalkable && start.Neighbors[i].Visited == 0)
                 {
-                    if (SearchPath(start.Neighbors[i], end))
+                    start.Neighbors[i].Visited = start.Visited + 1;
+                    if (SearchPath(start.Neighbors[i], end))    // Rekursivschritt
                     {
                         start.Neighbors[i].Previous = start;
                         return true;

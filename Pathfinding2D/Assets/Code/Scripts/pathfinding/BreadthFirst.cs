@@ -11,8 +11,9 @@ namespace pathfinding
 
         protected override bool SearchPath(Spot start, Spot end)
         {
-            List<Spot> waitList = new List<Spot>(); // Enthält die Liste der Knoten die Noch Bearbeitet werden müssen
-            start.Visited = true;
+            List<Spot> waitList = new List<Spot>();     // Enthält die Liste der Knoten die Noch Bearbeitet werden müssen
+            int visitedNumber = 1;                      // Gibt an wie viele aktuell besucht wurden
+            start.Visited = visitedNumber;
             waitList.Add(start);
 
             while (waitList.Any()) 
@@ -27,14 +28,13 @@ namespace pathfinding
 
                 foreach (Spot s in firstSpotInWaitList.Neighbors)
                 {
-                    if (!s.Visited)
+                    if (s.IsWalkable && s.Visited == 0)
                     {
-                        s.Visited = true;
-                        if (s.IsWalkable)
-                        {
-                            s.Previous = firstSpotInWaitList;
-                            waitList.Add(s);
-                        }
+                        visitedNumber++;
+                        s.Visited = visitedNumber;
+                        s.Previous = firstSpotInWaitList;
+                        waitList.Add(s);
+                      
                     }
                 }
             }
