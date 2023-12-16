@@ -11,8 +11,12 @@ namespace pathfinding
     /// </summary>
     public abstract class PathFindAlgorithm
     {
+        public Graph Graph { set; get; }
 
-        public Graph graph { set; get; }
+        /// <summary>
+        /// Liste die für jede Iteration des Algorithmus die bearbeiteten Knoten enthält. Wird genutzt um den Algorithmus schrittweise darzustellen.
+        /// </summary>
+        public List<List<Spot>> Iterations { private set; get; } = new();
 
         /// <summary>
         /// Lädt den Graphen.
@@ -33,18 +37,18 @@ namespace pathfinding
             BoundsInt bounds = tilemap.cellBounds;
             Spot rootSpot = new Spot(bounds.xMin, bounds.yMin, tilemap.HasTile(new Vector3Int(bounds.xMin, bounds.yMin, 0)));   // TODO: PathTile verwenden
 
-            graph = new Graph(bounds.size.x + 1, bounds.size.y + 1, rootSpot);  // Size + 1 da Length gebraucht wird
+            Graph = new Graph(bounds.size.x + 1, bounds.size.y + 1, rootSpot);  // Size + 1 da Length gebraucht wird
 
             for (int x = bounds.xMin; x <= bounds.xMax; x++)
             {
                 for (int y = bounds.yMin; y <= bounds.yMax; y++)
                 {
                     if (x == bounds.xMin && y == bounds.yMin) continue; // Das Erste Teil wurde schon als Wurzel eingefügt
-                    graph.AddSpot(new Spot(x, y, tilemap.HasTile(new Vector3Int(x, y, 0))));
+                    Graph.AddSpot(new Spot(x, y, tilemap.HasTile(new Vector3Int(x, y, 0))));
                 }
             }
 
-            graph.AddNeighborsForAllSpots();
+            Graph.AddNeighborsForAllSpots();
         }
 
         /// <summary>
@@ -72,7 +76,7 @@ namespace pathfinding
         /// <returns>Gefundenen Pfad oder leere Liste, wenn keiner gefunden wurde.</returns>
         public List<Spot> CreatePath(Vector2Int start, Vector2Int end)
         {
-            return CreatePath(graph.GetSpot(start.x, start.y), graph.GetSpot(end.x, end.y));
+            return CreatePath(Graph.GetSpot(start.x, start.y), Graph.GetSpot(end.x, end.y));
         }
 
         /// <summary>

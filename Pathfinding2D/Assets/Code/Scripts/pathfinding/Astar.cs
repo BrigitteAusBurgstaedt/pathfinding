@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
 
 namespace pathfinding
 {
-    public class Astar : PathFindAlgorithm
+    public class AStar : PathFindAlgorithm
     {
 
-        public Astar(Tilemap tilemap) : base(tilemap) { }
+        public AStar(Tilemap tilemap) : base(tilemap) { }
 
         protected override bool SearchPath(Spot start, Spot end)
         {

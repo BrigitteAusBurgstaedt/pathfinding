@@ -51,9 +51,9 @@ namespace pathfinding
         }
 
         /// <summary>
-        /// Gibt an ob der Knoten schon besucht wurde
+        /// Gibt den Besuchtheitsstatus des Knoten an. 0 == noch nicht besucht, jede andere Zahl gibt an, bei welcher Iteration der Knoten besucht wurde.
         /// </summary>
-        public bool Visited { get; set; } = false;
+        public int Visited { get; set; } = 0;
 
         public int Distance { get; set; } = int.MaxValue;
 

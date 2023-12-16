@@ -1,4 +1,7 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Resources;
+using Unity.Collections;
 using UnityEngine.Tilemaps;
 
 namespace pathfinding
@@ -10,7 +13,35 @@ namespace pathfinding
 
         protected override bool SearchPath(Spot start, Spot end)
         {
-            throw new NotImplementedException();
+            if (start.Visited == 0) // Aller erster Startknoten
+            {
+                start.Visited = 1;
+                Iterations.Add(new List<Spot> { start }); // nur für Visuals
+            }
+
+            if (start.Equals(end))  // Abbruchbedingung
+            {
+                return true;
+            }
+
+            for (int i = 0; i < start.Neighbors.Count; i++)
+            {
+                if (start.Neighbors[i].IsWalkable && start.Neighbors[i].Visited == 0)
+                {
+                    start.Neighbors[i].Visited = start.Visited + 1;
+                    Iterations.Add(new List<Spot> { start.Neighbors[i] }); // nur für Visuals
+                    
+                    if (SearchPath(start.Neighbors[i], end))    // Rekursivschritt
+                    {
+                        start.Neighbors[i].Previous = start;
+                        return true;
+                    }
+                        
+                }
+            }
+
+            return false;
+
         }
     }
 }
