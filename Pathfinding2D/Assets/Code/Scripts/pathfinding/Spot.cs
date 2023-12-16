@@ -1,10 +1,5 @@
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
-using Unity.VisualScripting;
-using UnityEngine.Tilemaps;
 using UnityEngine;
-using UnityEditorInternal;
-using System;
 using System.Text;
 
 namespace pathfinding
@@ -43,7 +38,7 @@ namespace pathfinding
         }
 
         /// <summary>
-        /// Geschätzte Kosten bis zum Ziel, beim Setzen wird F automatisch berechnet
+        /// Geschï¿½tzte Kosten bis zum Ziel, beim Setzen wird F automatisch berechnet
         /// </summary>
         public int H 
         { 
@@ -59,6 +54,10 @@ namespace pathfinding
         /// Gibt an ob der Knoten schon besucht wurde
         /// </summary>
         public bool Visited { get; set; } = false;
+
+        public int Distance { get; set; } = int.MaxValue;
+
+        public int Cost { get; private set; } = 10;
 
         /// <summary>
         /// Gibt an ob der Knoten begehbar ist
