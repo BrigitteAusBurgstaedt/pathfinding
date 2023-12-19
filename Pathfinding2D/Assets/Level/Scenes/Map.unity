@@ -177,7 +177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5827247490959343577, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
       propertyPath: carakter
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5827247490959343577, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
       propertyPath: textValue
@@ -200,6 +200,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
+--- !u!114 &390223855 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2775883973167427053, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
+  m_PrefabInstance: {fileID: 132284224}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,6 +628,28 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1080834383 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4031174983277146748, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
+  m_PrefabInstance: {fileID: 132284224}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1192982295 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8007436371104397289, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
+  m_PrefabInstance: {fileID: 132284224}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1194083410
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,14 +682,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6621ec27df6800944839f1822e881c7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carakterImage: {fileID: 0}
+  carakterImage: {fileID: 1192982295}
   caraktersName:
   - Dude
   - Dogo
   carakter: 1
-  charakterNameText: {fileID: 0}
+  charakterNameText: {fileID: 390223855}
   textValue: Hallo ich bin dein Lehrmeister
-  speach: {fileID: 0}
+  speach: {fileID: 1080834383}
 --- !u!114 &1194083412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -806,17 +839,6 @@ MonoBehaviour:
   roadMap: {fileID: 640083339}
   roadTile: {fileID: 11400000, guid: e8e1469be60cccd4db7fa36af09fab00, type: 2}
   start: {x: -7, y: -1}
---- !u!114 &1235499534 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4031174983277146748, guid: d908b335c24967646b3301006e3f133a, type: 3}
-  m_PrefabInstance: {fileID: 1477149700}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1255794894
 GameObject:
   m_ObjectHideFlags: 0

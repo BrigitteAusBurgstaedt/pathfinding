@@ -35,7 +35,12 @@ namespace pathfinding
         {
             tilemap.CompressBounds();
             BoundsInt bounds = tilemap.cellBounds;
-            Spot rootSpot = new Spot(bounds.xMin, bounds.yMin, tilemap.HasTile(new Vector3Int(bounds.xMin, bounds.yMin, 0)));   // TODO: PathTile verwenden
+            PathTile rootTile = tilemap.GetTile<PathTile>(new Vector3Int(bounds.xMin, bounds.yMin, 0));
+            Spot rootSpot;
+            if (rootTile == null)
+                rootSpot = new Spot(bounds.xMin, bounds.yMin, false, 0);
+            else 
+                rootSpot = new Spot(bounds.xMin, bounds.yMin, rootTile.IsWalkable, rootTile.Cost);
 
             Graph = new Graph(bounds.size.x + 1, bounds.size.y + 1, rootSpot);  // Size + 1 da Length gebraucht wird
 
@@ -44,7 +49,11 @@ namespace pathfinding
                 for (int y = bounds.yMin; y <= bounds.yMax; y++)
                 {
                     if (x == bounds.xMin && y == bounds.yMin) continue; // Das Erste Teil wurde schon als Wurzel eingefügt
-                    Graph.AddSpot(new Spot(x, y, tilemap.HasTile(new Vector3Int(x, y, 0))));
+                    PathTile tile = tilemap.GetTile<PathTile>(new Vector3Int(x, y, 0));
+                    if (tile == null)
+                        Graph.AddSpot(new Spot(x, y, false, 0));
+                    else
+                        Graph.AddSpot(new Spot(x, y, tile.IsWalkable, tile.Cost));
                 }
             }
 

@@ -45,7 +45,7 @@ namespace pathfinding
             get => _h;
             set 
             {
-                _f = _h + value;
+                _f = _g + value;
                 _h = value;
             }
         }
@@ -57,7 +57,7 @@ namespace pathfinding
 
         public int Distance { get; set; } = int.MaxValue;
 
-        public int Cost { get; private set; } = 10;
+        public int Cost { get; private set; }
 
         /// <summary>
         /// Gibt an ob der Knoten begehbar ist
@@ -69,15 +69,16 @@ namespace pathfinding
         private int _g;
         private int _h;
 
-        public Spot(int x, int y, bool isWalkable)
+        public Spot(int x, int y, bool isWalkable, int cost)
         {
             X = x;
             Y = y;
             _f = 0;
-            _g = 0;
+            _g = cost;
             _h = 0;
             Neighbors = new List<Spot>();
             IsWalkable = isWalkable;
+            Cost = cost;
         }
 
         /// <summary>

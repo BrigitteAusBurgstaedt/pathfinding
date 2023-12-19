@@ -117,7 +117,11 @@ namespace pathfinding
         {
             int indexForX = spot.X - _xOffset;
             int indexForY = spot.Y - _yOffset;
-            bool isOdd = (indexForY % 2 == 1);
+            bool isOdd;
+            if (_yOffset % 2 == 0) // Frag nicht
+                isOdd = (indexForY % 2 == 0);
+            else
+                isOdd = (indexForY % 2 == 1);
 
             if (indexForX < Spots.GetUpperBound(0))                         // UpperBound == Length - 1
                 spot.Neighbors.Add(Spots[indexForX + 1, indexForY]);        // 1. rechts 

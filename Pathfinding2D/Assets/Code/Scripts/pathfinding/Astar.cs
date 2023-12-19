@@ -12,13 +12,17 @@ namespace pathfinding
 
         protected override bool SearchPath(Spot start, Spot end)
         {
+            
             List<Spot> OpenSet = new List<Spot>();
             List<Spot> ClosedSet = new List<Spot>();
 
             OpenSet.Add(start);
+            Iterations.Add(new List<Spot> { start }); // nur für Visualisierung
 
             while (OpenSet.Count > 0)
             {
+                List<Spot> iteration = new List<Spot>(); // nur für Visualisierung
+
                 //Find shortest step distance in the direction of your goal within the open set
                 int winner = 0;
                 for (int i = 0; i < OpenSet.Count; i++)
@@ -32,6 +36,7 @@ namespace pathfinding
                 //Found the path, creates and returns the path
                 if (OpenSet[winner].Equals(end))
                 {
+                    Iterations.Add(new List<Spot> { end }); // nur für Visualisierung
                     return true;
                 }
 
@@ -46,7 +51,9 @@ namespace pathfinding
                     var n = neighbors[i];
                     if (!ClosedSet.Contains(n) && n.IsWalkable)//Checks to make sure the neighbor of our current tile is not within closed set, and has a height of less than 1
                     {
-                        var tempG = current.G + 1;//gets a temp comparison integer for seeing if a route is shorter than our current path
+                        iteration.Add(n); // nur für Visualisierung
+
+                        var tempG = current.G + n.Cost;//gets a temp comparison integer for seeing if a route is shorter than our current path
 
                         bool newPath = false;
                         if (OpenSet.Contains(n)) //Checks if the neighboor we are checking is within the openset
@@ -70,6 +77,8 @@ namespace pathfinding
                         }
                     }
                 }
+
+                Iterations.Add(iteration);
 
             }
 

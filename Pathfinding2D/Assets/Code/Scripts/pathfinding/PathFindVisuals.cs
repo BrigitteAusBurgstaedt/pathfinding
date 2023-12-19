@@ -14,6 +14,7 @@ namespace pathfinding
     public class PathFindVisuals : MonoBehaviour
     {
         public Coin coin;
+        public CoinAStar coinAStar;
         public Tilemap tilemap;
         public Tilemap roadMap;
         public TileBase roadTile;
@@ -31,7 +32,8 @@ namespace pathfinding
             roadMap.CompressBounds();
             camera = Camera.main;
 
-            pathFindAlgorithm = new DepthFirst(tilemap);
+            pathFindAlgorithm = new AStar(tilemap);
+            DrawCost();
         }
 
         // Update is called once per frame
@@ -48,6 +50,7 @@ namespace pathfinding
                 Vector3 world = camera.ScreenToWorldPoint(Input.mousePosition);
                 Vector3Int gridPos = tilemap.WorldToCell(world);
                 roadMap.SetTile(new Vector3Int(gridPos.x, gridPos.y, 0), null);
+                DestroyAllCoins();
             }
             if (Input.GetMouseButtonDown(0)) // Linke Maustaste runter gedrückt -> Pfad zur Position Zeichnen
             {
@@ -75,8 +78,8 @@ namespace pathfinding
                     time -= Time.deltaTime;
                     if (time < 0f)
                     {
-                        DrawVisitedIteration();
-                        time = 0.1f;
+                        DrawAStarIteration();
+                        time = 0.5f;
                     }
                 } else 
                 {
@@ -102,6 +105,39 @@ namespace pathfinding
                 Instantiate(coin, tilemap.CellToWorld(new Vector3Int(s.X, s.Y, 0)), transform.rotation);
             }
             pathFindAlgorithm.Iterations.RemoveAt(0);
+        }
+
+        private void DrawAStarIteration()
+        {
+            foreach (Spot s in pathFindAlgorithm.Iterations[0])
+            {
+                coinAStar.gCost.SetText(s.G.ToString());
+                coinAStar.fCost.SetText(s.F.ToString());
+                coinAStar.hCost.SetText(s.H.ToString());
+                Instantiate(coinAStar, tilemap.CellToWorld(new Vector3Int(s.X, s.Y, 0)), transform.rotation);
+            }
+            pathFindAlgorithm.Iterations.RemoveAt(0);
+        }
+
+        private void DrawCost()
+        {
+            foreach (Spot s in pathFindAlgorithm.Graph.Spots)
+            {
+                if (s.IsWalkable)
+                {
+                    coin.CoinText.SetText(s.Cost.ToString());
+                    Instantiate(coin, tilemap.CellToWorld(new Vector3Int(s.X, s.Y, 0)), transform.rotation);
+                }
+            }
+        }
+
+        private void DestroyAllCoins()
+        {
+            GameObject[] allCoins = GameObject.FindGameObjectsWithTag("Coin");
+            foreach (GameObject obj in allCoins)
+            {
+                Destroy(obj);
+            }
         }
     }
 }
