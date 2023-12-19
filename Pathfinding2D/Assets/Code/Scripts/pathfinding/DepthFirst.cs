@@ -8,6 +8,7 @@ namespace pathfinding
 {
     public class DepthFirst : PathFindAlgorithm
     {
+        // private int currentVisited = 0; für später
 
         public DepthFirst(Tilemap tilemap) : base(tilemap) { }
 
@@ -29,11 +30,11 @@ namespace pathfinding
                 if (start.Neighbors[i].IsWalkable && start.Neighbors[i].Visited == 0)
                 {
                     start.Neighbors[i].Visited = start.Visited + 1;
+                    start.Neighbors[i].Previous = start;
                     Iterations.Add(new List<Spot> { start.Neighbors[i] }); // nur für Visuals
-                    
+
                     if (SearchPath(start.Neighbors[i], end))    // Rekursivschritt
                     {
-                        start.Neighbors[i].Previous = start;
                         return true;
                     }
                         
