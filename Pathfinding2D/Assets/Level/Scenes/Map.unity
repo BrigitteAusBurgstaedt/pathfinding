@@ -417,6 +417,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3592269424393246638, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
   m_PrefabInstance: {fileID: 132284224}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &663048514 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3592269424393246638, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
+  m_PrefabInstance: {fileID: 132284224}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &849251781
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,12 +655,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carakterImage: {fileID: 0}
+  carakterImage: {fileID: 0}
   caraktersName:
   - Dude
   - Dogo
   carakter: 1
   charakterNameText: {fileID: 0}
+  charakterNameText: {fileID: 0}
   textValue: Hallo ich bin dein Lehrmeister
+  speach: {fileID: 0}
   speach: {fileID: 0}
 --- !u!114 &1194083412
 MonoBehaviour:
