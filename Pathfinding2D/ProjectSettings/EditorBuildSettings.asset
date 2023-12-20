@@ -20,4 +20,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Level/Scenes/Quiz_UI.unity
     guid: 2aad85bd310184ba08084243744aca4b
+  - enabled: 1
+    path: Assets/Level/Scenes/Levelselection.unity
+    guid: 517e3be97ee2e4b418652201bd85d2f1
+  - enabled: 1
+    path: Assets/Level/Scenes/ExampleMap.unity
+    guid: 171aed325a251ea4b8c3294063cd7f98
+  - enabled: 1
+    path: Assets/Level/Scenes/Learngoals/Learngoal1.unity
+    guid: 45cad649115821b41b91828cee331666
+  - enabled: 1
+    path: Assets/Level/Scenes/Learngoals/Learngoal2.unity
+    guid: 7d890744f5b868749807e94a50714fe1
+  - enabled: 1
+    path: Assets/Level/Scenes/Learngoals/Learngoal3.unity
+    guid: 99dc73f42c2cf8744b9297dc983c8e90
   m_configObjects: {}
