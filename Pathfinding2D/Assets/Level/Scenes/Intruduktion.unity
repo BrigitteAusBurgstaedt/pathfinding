@@ -534,7 +534,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2916409679878518218, guid: a14a556e7cd8f32448bba6fb75cd7958, type: 3}
       propertyPath: targetSceneName
-      value: ExampleMap
+      value: Learngoal1
       objectReference: {fileID: 0}
     - target: {fileID: 3563168539611054793, guid: a14a556e7cd8f32448bba6fb75cd7958, type: 3}
       propertyPath: m_AnchoredPosition.y
