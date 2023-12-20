@@ -137,11 +137,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2682964060727177568, guid: 67f6365ba04ca4e48bf553d485173e61, type: 3}
       propertyPath: m_Text
-      value: "In diesem Abschnitt erf\xE4hrst du, wie die Pfadsuchalgorithmen Breitensuche
-        und Tiefensuche mit FIFO-Queue bzw. LIFO-Stack arbeiten. Finde heraus, wann
-        welcher Algorithmus f\xFCr unterschiedliche Spielszenarien geeignet ist.
-        Zudem bekommst du ein Verst\xE4ndnis f\xFCr das grundlegende Problem der
-        Pfadsuche in Graphen vermittelt."
+      value: "In diesem Abschnitt werden wir dir beibringen, wie die <b>Pfadsuchealgorithmen,
+        Breiten- und Tiefensuche</b> mit <color=red>FIFO-Queue bzw. LIFO-Stack</color>
+        arbeiten. Ziel dieses level ist es, herauszufinden welcher Algorithmus f\xFCr
+        die unterschiedlichen <b>Spielszenarien</b> geeignet ist. Au\xDFerdem wird
+        dir ein Verst\xE4ndnis f\xFCr das grundlegende Problem der <b>Pfadsuche im
+        Graphen</b> vermittelt. "
       objectReference: {fileID: 0}
     - target: {fileID: 3830799724715085659, guid: 67f6365ba04ca4e48bf553d485173e61, type: 3}
       propertyPath: m_Pivot.x
