@@ -1,11 +1,5 @@
-﻿using pathfinding;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -32,7 +26,7 @@ namespace pathfinding
             roadMap.CompressBounds();
             camera = Camera.main;
 
-            pathFindAlgorithm = new Dijkstra(tilemap);
+            pathFindAlgorithm = new BreadthFirst(tilemap);
             DrawCost();
         }
 
@@ -78,7 +72,7 @@ namespace pathfinding
                     time -= Time.deltaTime;
                     if (time < 0f)
                     {
-                        DrawDistanceIteration();
+                        DrawVisitedIteration();
                         time = 0.5f;
                     }
                 } else 
