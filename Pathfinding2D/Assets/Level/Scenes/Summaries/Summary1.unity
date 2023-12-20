@@ -728,7 +728,7 @@ PrefabInstance:
       objectReference: {fileID: 1371671240}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: texts.Array.size
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: titles.Array.size
@@ -736,23 +736,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: texts.Array.data[0]
-      value: "<b>Breitensuche (BFS)</b> erkundet schichtweise alle erreichbaren Knoten
-        eines Graphen von einem Startknoten s aus. Der Algorithmus bildet dabei einen
-        BFS-Baum mit Abst\xE4nden von s zu den Knoten. Die resultierenden Baumkanten
-        repr\xE4sentieren <color=red>k\xFCrzesten</color> Wege im Graphen."
+      value: Die <b>Breitensuche (BFS)</b>, auch Breadth-first genannt, ist eine
+        Methode zur systematischen Traversierung eines Graphen. Sie basiert auf dem
+        <color=red>ADT Queue</color> und arbeitet nach dem <b>FIFO-Prinzip</b>, wodurch
+        sie schichtweise alle erreichbaren Knoten von einem Startknoten "s" aus erkundet.
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: texts.Array.data[1]
-      value: "Die Breitensuche hat die Eigenschaft, dass ihre Baumkanten k\xFCrzeste
-        Wege von der Wurzel s zu den Knoten bilden. Diese Wege sind n\xFCtzlich f\xFCr
-        die Suche nach optimalen Verbindungen in Netzwerken."
+      value: "  <b>BFS</b> erm\xF6glicht nicht nur die Entdeckung erreichbarer Knoten,
+        sondern auch die Ermittlung des <color=red>k\xFCrzesten</color> und <color=red>kosteng\xFCnstigsten</color>
+        Weges in einem Graphen oder Baum. Die entstehenden <b>Baumkanten</b> repr\xE4sentieren
+        genau diesen <b>k\xFCrzesten</b> Weg. Bei der Breitensuche in einem Baum
+        beginnt man an der Wurzel und bearbeitet dann eine Ebene von Kindern, gefolgt
+        von einer Ebene von Enkelkindern und so weiter."
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: texts.Array.data[2]
-      value: "Die BFS auf einem Graphen G stellt sicher, dass f\xFCr alle Kanten
-        (u, v) die Beziehung d(v) \u2264 d(u) + 1 gilt. Der Algorithmus kann effizient
-        mit einer einzigen Warteschlange implementiert werden und hat eine Zeitkomplexit\xE4t
-        von O(n+m)."
+      value: "Die Laufzeit der Breitensuche betr\xE4gt <color=red>O(|V|+|E|), wobei
+        |V| die Anzahl der Knoten und |E| die Anzahl der Kanten ist</color>, besonders
+        wenn eine Adjazenzliste verwendet wird. Im Vergleich zur <b>Tiefensuche</b>,
+        bei der zuerst der aktuelle Knoten bearbeitet wird und dann seine Nachfolger,
+        behandelt die <b>Breitensuche</b> zuerst alle Nachbarn, die am n\xE4chsten
+        zum aktuellen Knoten sind, bevor sie sich weiter ausbreitet. "
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: texts.Array.data[3]
