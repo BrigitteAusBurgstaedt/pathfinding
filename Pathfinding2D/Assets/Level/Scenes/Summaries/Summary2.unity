@@ -197,7 +197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2754567573623077125, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -231.33
+      value: -350
       objectReference: {fileID: 0}
     - target: {fileID: 2754567573623077125, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -237,35 +237,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: texts.Array.data[0]
-      value: "Dijkstra ist ein Algorithmus zur Bestimmung des k\xFCrzesten Pfades
-        von einem Startknoten s zu allen anderen erreichbaren Knoten in einem gewichteten
-        Graphen. Der Algorithmus aktualisiert iterativ die k\xFCrzesten bekannten
-        Wege und w\xE4hlt dabei stets den Knoten mit dem minimalen bisherigen Pfadgewicht
-        aus."
+      value: "Dijkstra ist ein Algorithmus, der in einem <b>gewichteten </b> Graphen
+        den <b>k\xFCrzesten Weg</b> von einem Startpunkt zu allen anderen erreichbaren
+        Punkten findet. Dabei werden die k\xFCrzesten bekannten Wege <b>iterativ</b>
+        aktualisiert, indem immer der Weg mit dem bisher <b>geringsten</b> Gewicht
+        ausgew\xE4hlt wird."
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: texts.Array.data[1]
-      value: "Dijkstra's Algorithmus gew\xE4hrleistet, dass nach Abschluss f\xFCr
-        alle erreichten Knoten v der ermittelte Weg von s zu v tats\xE4chlich minimal
-        ist. Die Zeitkomplexit\xE4t betr\xE4gt O((n + m) * log(n)), wobei n die Anzahl
-        der Knoten und m die Anzahl der Kanten im Graphen sind."
+      value: "Der Algorithmus stellt sicher, dass f\xFCr alle erreichten Punkte v
+        der gefundene Weg von Anfangspunkt s zu v tats\xE4chlich der k\xFCrzeste
+        ist. Die Zeitkomplexit\xE4t betr\xE4gt <b>O((n + m) * log(n))</b>, wobei
+        n die Anzahl der Punkte und m die Anzahl der Kanten im Graphen sind."
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: texts.Array.data[2]
-      value: "A* ist ein Algorithmus zur Pfadfindung, der heuristische Informationen
-        verwendet, um den k\xFCrzesten Weg von einem Startknoten zu einem Zielknoten
-        in einem Graphen zu finden. Der Algorithmus bewertet jeden m\xF6glichen Pfad
-        basierend auf der Summe aus den bisher zur\xFCckgelegten Kosten und einer
-        gesch\xE4tzten Kostenfunktion zum Zielknoten. Dadurch priorisiert A* Pfade,
-        die wahrscheinlich zum Ziel f\xFChren."
+      value: "A* ist ein Algorithmus zur Pfadfindung, der <b>heuristische</b> Informationen
+        nutzt, um den <b>k\xFCrzesten</b> Weg von einem Startpunkt zu einem Zielknoten
+        in einem Graphen zu finden. Der Algorithmus bewertet Pfade anhand der <b>Summe
+        der bisherigen Kosten und einer gesch\xE4tzten Kostenfunktion zum Ziel</b>.
+        A* priorisiert Pfade, die wahrscheinlich zum Ziel f\xFChren."
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: texts.Array.data[3]
-      value: "A* zeichnet sich durch seine Effizienz und optimale L\xF6sung f\xFCr
-        k\xFCrzeste Wege aus. Die Heuristik erm\xF6glicht es dem Algorithmus, sich
-        auf vielversprechende Pfade zu konzentrieren und somit den Suchraum effektiv
-        zu reduzieren. Die Zeitkomplexit\xE4t von A* h\xE4ngt von der Qualit\xE4t
-        der Heuristik ab, und in der Praxis erreicht er h\xE4ufig gute Laufzeiten."
+      value: "Die St\xE4rke von A* liegt in seiner Effizienz und F\xE4higkeit zur
+        <b>optimalen L\xF6sung</b> f\xFCr k\xFCrzeste Wege. Die Heuristik erm\xF6glicht
+        es dem Algorithmus, sich auf vielversprechende Pfade zu fokussieren und den
+        <b>Suchraum effektiv zu reduzieren</b>. Die Laufzeit von A* h\xE4ngt von
+        der Qualit\xE4t der Heuristik ab, aber in der Praxis erreicht er oft sehr
+        gute Ergebnisse."
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: titles.Array.data[0]
