@@ -36,7 +36,7 @@ public class ShowSpeachBuble : MonoBehaviour
         //ShowTextSlowly();
     }
 
-    
+	/*
 	private void ShowTextSlowly()
 	{
         if (count % 20 == 0)
@@ -45,6 +45,7 @@ public class ShowSpeachBuble : MonoBehaviour
             count = 0;
         count++;
     }
+	*/
 	
 
     private void UpdateCarakter(int carakter)
