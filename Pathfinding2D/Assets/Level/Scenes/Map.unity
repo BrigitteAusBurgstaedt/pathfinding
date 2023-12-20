@@ -133,11 +133,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3592269424393246638, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -184.17535
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3592269424393246638, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -120.05142
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3592269424393246638, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -174,26 +174,6 @@ PrefabInstance:
     - target: {fileID: 5489660090703904603, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
       propertyPath: m_Name
       value: TextBuble
-      objectReference: {fileID: 0}
-    - target: {fileID: 5827247490959343577, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
-      propertyPath: carakter
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5827247490959343577, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
-      propertyPath: textValue
-      value: Test Text
-      objectReference: {fileID: 0}
-    - target: {fileID: 5827247490959343577, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
-      propertyPath: caraktersName.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5827247490959343577, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
-      propertyPath: caraktersName.Array.data[0]
-      value: Dude
-      objectReference: {fileID: 0}
-    - target: {fileID: 5827247490959343577, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
-      propertyPath: caraktersName.Array.data[1]
-      value: Dog
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -423,8 +403,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1209432032}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &663048514 stripped
-Transform:
+--- !u!224 &663048514 stripped
+RectTransform:
   m_CorrespondingSourceObject: {fileID: 3592269424393246638, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
   m_PrefabInstance: {fileID: 132284224}
   m_PrefabAsset: {fileID: 0}
@@ -835,6 +815,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coin: {fileID: 5062231406252610891, guid: c2037d15edd236e41a626f9abbf6061c, type: 3}
+  coinAStar: {fileID: 0}
   tilemap: {fileID: 1255794895}
   roadMap: {fileID: 640083339}
   roadTile: {fileID: 11400000, guid: e8e1469be60cccd4db7fa36af09fab00, type: 2}
