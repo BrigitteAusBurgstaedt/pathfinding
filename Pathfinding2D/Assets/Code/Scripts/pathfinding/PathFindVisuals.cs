@@ -72,8 +72,8 @@ namespace pathfinding
                     time -= Time.deltaTime;
                     if (time < 0f)
                     {
-                        DrawVisitedIteration();
                         time = 0.5f;
+                        DrawVisitedIteration();             
                     }
                 } else 
                 {
@@ -95,7 +95,7 @@ namespace pathfinding
         {
             foreach (Spot s in pathFindAlgorithm.Iterations[0])
             {
-                coin.CoinText.SetText(s.Visited.ToString());
+                coin.CoinText.SetText(s.Visited.ToString() + ".");
                 Instantiate(coin, tilemap.CellToWorld(new Vector3Int(s.X, s.Y, 0)), transform.rotation);
             }
             pathFindAlgorithm.Iterations.RemoveAt(0);
