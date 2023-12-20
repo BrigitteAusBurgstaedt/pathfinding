@@ -32,7 +32,7 @@ namespace pathfinding
             roadMap.CompressBounds();
             camera = Camera.main;
 
-            pathFindAlgorithm = new AStar(tilemap);
+            pathFindAlgorithm = new Dijkstra(tilemap);
             DrawCost();
         }
 
@@ -78,7 +78,7 @@ namespace pathfinding
                     time -= Time.deltaTime;
                     if (time < 0f)
                     {
-                        DrawAStarIteration();
+                        DrawDistanceIteration();
                         time = 0.5f;
                     }
                 } else 
@@ -102,6 +102,19 @@ namespace pathfinding
             foreach (Spot s in pathFindAlgorithm.Iterations[0])
             {
                 coin.CoinText.SetText(s.Visited.ToString());
+                Instantiate(coin, tilemap.CellToWorld(new Vector3Int(s.X, s.Y, 0)), transform.rotation);
+            }
+            pathFindAlgorithm.Iterations.RemoveAt(0);
+        }
+
+        private void DrawDistanceIteration() 
+        {
+            foreach (Spot s in pathFindAlgorithm.Iterations[0])
+            {
+                if (s.Distance == int.MaxValue)
+                    coin.CoinText.SetText("∞");
+                else
+                    coin.CoinText.SetText(s.Distance.ToString());
                 Instantiate(coin, tilemap.CellToWorld(new Vector3Int(s.X, s.Y, 0)), transform.rotation);
             }
             pathFindAlgorithm.Iterations.RemoveAt(0);
