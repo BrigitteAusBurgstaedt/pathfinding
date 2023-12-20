@@ -85,7 +85,7 @@ namespace pathfinding
 
         private void DrawRoad()
         {
-            for (int i = 0; i < roadPath.Count; i++)
+            for (int i = 1; i < roadPath.Count - 1; i++) // Start und Ziel sollen nicht mit angezeigt werden als Pfad
             {
                 roadMap.SetTile(new Vector3Int(roadPath[i].X, roadPath[i].Y, 0), roadTile);
             }

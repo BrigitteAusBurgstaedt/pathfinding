@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 571523805a2237b49a5c8f1307a20ea0, type: 3}
   m_Name: MountainNew
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: ebea66696f0484e6fb62ef52d797af9a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ca1c2b8a454f6cb40891abc980653a79, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
