@@ -408,6 +408,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4505914550191259193, guid: a14a556e7cd8f32448bba6fb75cd7958, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505914550191259193, guid: a14a556e7cd8f32448bba6fb75cd7958, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 808971361}
@@ -426,6 +430,10 @@ PrefabInstance:
     - target: {fileID: 7033934187338875791, guid: a14a556e7cd8f32448bba6fb75cd7958, type: 3}
       propertyPath: m_Name
       value: Options_Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033934187338875791, guid: a14a556e7cd8f32448bba6fb75cd7958, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9007991929897852556, guid: a14a556e7cd8f32448bba6fb75cd7958, type: 3}
       propertyPath: m_text
