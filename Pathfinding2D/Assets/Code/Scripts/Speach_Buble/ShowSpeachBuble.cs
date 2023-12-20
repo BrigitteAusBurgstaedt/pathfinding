@@ -29,14 +29,14 @@ public class ShowSpeachBuble : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		//zum testen Später sollte CarakterUpdate nur ausgeführt werden wenn neuer text angezeigt werden soll
+		//zum testen Spï¿½ter sollte CarakterUpdate nur ausgefï¿½hrt werden wenn neuer text angezeigt werden soll
 		UpdateCarakter(carakter);
 
         speach.text = textValue;
         //ShowTextSlowly();
     }
 
-    /*
+    
 	private void ShowTextSlowly()
 	{
         if (count % 20 == 0)
@@ -45,7 +45,7 @@ public class ShowSpeachBuble : MonoBehaviour
             count = 0;
         count++;
     }
-	*/
+	
 
     private void UpdateCarakter(int carakter)
     {
