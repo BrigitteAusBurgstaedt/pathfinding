@@ -1671,7 +1671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ba51aebd5878f4f88e65f7460195dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneName: ExampleMap
+  targetSceneName: Summary1
 --- !u!114 &1540495984
 MonoBehaviour:
   m_ObjectHideFlags: 0

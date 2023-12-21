@@ -720,7 +720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: targetScene
-      value: ExampleMap
+      value: Map_Tiles_Intro
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: textComponent

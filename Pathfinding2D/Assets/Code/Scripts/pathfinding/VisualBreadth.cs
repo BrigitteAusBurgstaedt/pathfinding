@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 
 namespace pathfinding
 {
-    public class PathFindVisuals : MonoBehaviour
+    public class VisualBreadth : MonoBehaviour
     {
         public string NextScene;
         public Coin coin;
@@ -28,7 +28,7 @@ namespace pathfinding
             roadMap.CompressBounds();
             camera = Camera.main;
 
-            pathFindAlgorithm = new AStar(tilemap);
+            pathFindAlgorithm = new BreadthFirst(tilemap);
         }
 
         // Update is called once per frame
@@ -90,7 +90,7 @@ namespace pathfinding
                     if (time < 0f)
                     {
                         time = 0.2f;
-                        DrawAStarIteration();             
+                        DrawVisitedIteration();             
                     }
                 } else 
                 {
