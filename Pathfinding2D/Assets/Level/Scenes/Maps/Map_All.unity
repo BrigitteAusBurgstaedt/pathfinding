@@ -453,7 +453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb37ce3276039474f9ea67fa067bb594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextScene: Levelslection
+  NextScene: Levelselection
   coin: {fileID: 5062231406252610891, guid: f92f502708efa3540bedfd077d8c6095, type: 3}
   coinAStar: {fileID: 278026008520648372, guid: c2037d15edd236e41a626f9abbf6061c, type: 3}
   tilemap: {fileID: 2025556872}
