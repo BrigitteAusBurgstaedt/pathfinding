@@ -728,11 +728,11 @@ PrefabInstance:
       objectReference: {fileID: 1371671240}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: texts.Array.size
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: titles.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: texts.Array.data[0]
@@ -761,24 +761,46 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: texts.Array.data[3]
-      value: "Tiefensuche (DFS) ist eine Methode zur Erkundung aller Knoten eines
-        Graphen von einem Startknoten s aus. Im Gegensatz zur Breitensuche durchl\xE4uft
-        DFS den Graphen schrittweise in die Tiefe und nutzt einen Stapel, um die
-        Reihenfolge der zu erkundenden Knoten zu verwalten."
+      value: "Die <b>Tiefensuche (DFS)</b> ist ein <color=red>algorithmischer Ansatz</color>
+        zur <color=red>Durchsuchung von Graphen</color>. Sie beginnt bei einem <b>Knoten</b>
+        und folgt diesem <b>Pfad</b> so weit wie m\xF6glich in die <color=red>Tiefe</color>,
+        bevor andere Wege erkundet werden. In der Implementierung der <color=red>Tiefensuche
+        in Java</color> werden die <b>besuchten Knoten markiert</b>, und alle <color=red>benachbarten,
+        aber noch nicht besuchten Knoten</color> werden <b>rekursiv</b> durchlaufen. "
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: texts.Array.data[4]
-      value: "Der Algorithmus erstellt einen DFS-Baum mit Wurzel s und merkt sich
-        die Abst\xE4nde d(v) von s zu den Knoten sowie die Vorg\xE4ngerknoten parent(v). 
-        Ein Merkmal der Tiefensuche ist, dass ihre Baumkanten m\xF6glicherweise l\xE4ngere
-        Wege repr\xE4sentieren."
+      value: "Im <b>Vergleich zur BFS</b> untersucht <b>DFS</b>die <color=red>Knoten
+        in der Tiefe</color>, <b>ohne</b> notwendigerweise den <b>k\xFCrzesten Pfad</b>
+        zu finden. W\xE4hrend die <b>Breitensuche</b> alle <color=red>Knoten auf
+        einer Ebene zuerst untersucht</color> und dann zur <b>n\xE4chsten</b> wechselt,
+        dringt die Tiefensuche <b>tiefer in den Graphen</b> vor. Bei der <b>Anwendung</b>
+        der <color=red>Tiefensuche in Graphen</color> folgt der Algorithmus einer
+        <b>beliebigen benachbarten Kante</b> zu einem noch nicht besuchten Knoten
+        und <color=red>wiederholt diesen Prozess rekursiv</color>. Oft wird sie mit
+        einer <b>Adjazenzmatrix</b> implementiert, um die <color=red>Verbindungen
+        zwischen den Knoten</color> zu \xFCberpr\xFCfen. "
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: texts.Array.data[5]
-      value: "DFS hat Anwendungen in der topologischen Sortierung von Graphen und
-        der Identifizierung von Zusammenhangskomponenten. Die Laufzeit betr\xE4gt
-        ebenfalls O(n+m), wobei n die Anzahl der Knoten und m die Anzahl der Kanten
-        im Graphen sind."
+      value: "Eine <b>alternative</b> zur <color=red>rekursiven Tiefensuche</color>
+        ist die <color=red>iterative Tiefensuche</color>, die die <b>Einschr\xE4nkungen
+        der rekursiven Methode</b> \xFCberwindet, indem sie einen <b>Stack</b> verwendet,
+        um den n\xE4chsten zu besuchenden Knoten zu bestimmen. <b>Breitensuche</b>
+        wird angewendet, wenn der <color=red>k\xFCrzeste Pfad</color> in einem <b>ungewichteten
+        Graphen</b> oder die <color=red>Inspektion aller Knoten auf der gleichen
+        Ebene</color> wichtig sind. <b>Tiefensuche</b> wird verwendet, wenn <b>komplexe
+        Strukturen</b>, wie <b>Baumstrukturen</b>, vollst\xE4ndig durchlaufen werden
+        sollen und nicht notwendigerweise der <color=red>k\xFCrzeste Weg</color>
+        von Interesse ist. "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
+      propertyPath: texts.Array.data[6]
+      value: "Die <b>Tiefensuche</b> durchl\xE4uft <color=red>systematisch einen
+        Graphen</color>, indem sie ein <b>beliebiges</b> Element ausw\xE4hlt, alle
+        <color=red>angrenzenden Knoten durchl\xE4uft</color> und dann zum <b>n\xE4chsten
+        Element zur\xFCckkehrt</b>. Dieser Prozess wird fortgesetzt, bis alle <b>Elemente
+        besucht</b> wurden."
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: titles.Array.data[0]
@@ -802,6 +824,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: titles.Array.data[5]
+      value: Zusammenfassung - Tiefensuche
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
+      propertyPath: titles.Array.data[6]
       value: Zusammenfassung - Tiefensuche
       objectReference: {fileID: 0}
     m_RemovedComponents: []
