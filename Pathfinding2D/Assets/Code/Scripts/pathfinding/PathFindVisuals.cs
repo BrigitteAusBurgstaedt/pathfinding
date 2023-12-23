@@ -10,7 +10,6 @@ namespace pathfinding
     {
         public string NextScene;
         public Coin coin;
-        public CoinAStar coinAStar;
         public Tilemap tilemap;
         public Tilemap roadMap;
         public TileBase roadTile;
@@ -90,7 +89,7 @@ namespace pathfinding
                     if (time < 0f)
                     {
                         time = 0.2f;
-                        DrawAStarIteration();             
+                        DrawNextStep();             
                     }
                 } else 
                 {
@@ -131,16 +130,10 @@ namespace pathfinding
             pathFindAlgorithm.Iterations.RemoveAt(0);
         }
 
-        private void DrawAStarIteration()
+        private void DrawNextStep()
         {
-            foreach (Spot s in pathFindAlgorithm.Iterations[0])
-            {
-                coinAStar.gCost.SetText(s.G.ToString());
-                coinAStar.fCost.SetText(s.F.ToString());
-                coinAStar.hCost.SetText(s.H.ToString());
-                Instantiate(coinAStar, tilemap.CellToWorld(new Vector3Int(s.X, s.Y, 0)), transform.rotation);
-            }
-            pathFindAlgorithm.Iterations.RemoveAt(0);
+            Vector3 position = new Vector3();
+            Instantiate(pathFindAlgorithm.GetVisualNextStep(tilemap, position), position, transform.rotation);
         }
 
         private void DrawCost()

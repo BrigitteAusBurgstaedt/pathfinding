@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -9,14 +7,14 @@ namespace pathfinding
     /// <summary>
     /// Abstrakte Klasse für alle Pfadsuchalgorithmen im Projekt.
     /// </summary>
-    public abstract class PathFindAlgorithm
+    public abstract class PathFindAlgorithm<T>
     {
         public Graph Graph { set; get; }
 
         /// <summary>
-        /// Liste die für jede Iteration des Algorithmus die bearbeiteten Knoten enthält. Wird genutzt um den Algorithmus schrittweise darzustellen.
+        /// Liste die für jeden Schritt des Algorithmus den bearbeiteten Knoten enthält. Wird genutzt um den Algorithmus schrittweise darzustellen.
         /// </summary>
-        public List<List<Spot>> Iterations { private set; get; } = new();
+        public List<Spot> Steps { private set; get; } = new();
 
         /// <summary>
         /// Lädt den Graphen.
@@ -120,11 +118,18 @@ namespace pathfinding
         }
 
         /// <summary>
+        /// Zeigt den nächsten Schritt des Algorithmus.
+        /// </summary>
+        /// <returns>Das Objekt welches  wenn es einen nächsten Schritt gegeben hat, false sonst</returns>
+        public abstract T GetVisualNextStep(Tilemap tilemap, out Vector3 position);
+
+        /// <summary>
         /// Der jeweilige Suchalgorithmus.
         /// </summary>
         /// <param name="start">Startknoten</param>
         /// <param name="end">Zielknoten</param>
         /// <returns>true wenn ein Pfad gefunden wurde, false wenn kein Pfad Gefunden wurde</returns>
         protected abstract bool SearchPath(Spot start, Spot end);
+
     }
 }
