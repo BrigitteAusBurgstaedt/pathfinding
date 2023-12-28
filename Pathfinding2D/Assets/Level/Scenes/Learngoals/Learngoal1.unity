@@ -740,11 +740,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: texts.Array.data[0]
-      value: Dies ist ein Text
+      value: "In diesem Abschnitt werden wir dir beibringen, wie die <b>Pfadsuchealgorithmen,
+        Breiten- und Tiefensuche</b> mit <color=red>FIFO-Queue bzw. LIFO-Stack</color>
+        arbeiten. Ziel dieses level ist es, herauszufinden welcher Algorithmus f\xFCr
+        die unterschiedlichen <b>Spielszenarien</b> geeignet ist. Au\xDFerdem wird
+        dir ein Verst\xE4ndnis f\xFCr das grundlegende Problem der <b>Pfadsuche im
+        Graphen</b> vermittelt. "
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: titles.Array.data[0]
-      value: "\xDCberschrift"
+      value: 1. Abschnitt - Breiten-/Tiefensuche
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

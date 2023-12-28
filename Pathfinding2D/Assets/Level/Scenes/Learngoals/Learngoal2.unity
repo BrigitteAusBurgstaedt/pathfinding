@@ -137,10 +137,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2682964060727177568, guid: 67f6365ba04ca4e48bf553d485173e61, type: 3}
       propertyPath: m_Text
-      value: "In diesem Abschnitt wirst du verstehen, wie gewichtete Pfadsuchalgorithmen
-        wie Dijkstra und A* arbeiten. Erfahre, wie die Priority Queue und die Heuristik
-        den Unterschied machen und w\xE4hle klug zwischen den Algorithmen f\xFCr
-        Szenarien mit unterschiedlichen Kantenkosten."
+      value: "In diesem Abschnitt lernst du die <b>Pfadsuchealgorithmen Dijkstra
+        und A*</b> kennen. Dijkstra findet den <color=red>k\xFCrzesten Weg in gewichteten
+        Graphen</color>, w\xE4hrend A* zus\xE4tzlich eine <color=red>Heuristik f\xFCr
+        effiziente Pfadsuche</color> nutzt. Ziel ist es, die Anwendungsbereiche und
+        Unterschiede der Algorithmen in verschiedenen <b>Spielszenarien</b> zu verstehen
+        und die optimale Wahl f\xFCr die <b>Pfadsuche</b> zu treffen."
       objectReference: {fileID: 0}
     - target: {fileID: 3830799724715085659, guid: 67f6365ba04ca4e48bf553d485173e61, type: 3}
       propertyPath: m_Pivot.x
@@ -236,6 +238,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3830799724715085659, guid: 67f6365ba04ca4e48bf553d485173e61, type: 3}
   m_PrefabInstance: {fileID: 301627256}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &301627258 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 169402992589672294, guid: 67f6365ba04ca4e48bf553d485173e61, type: 3}
+  m_PrefabInstance: {fileID: 301627256}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &301627259 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2682964060727177568, guid: 67f6365ba04ca4e48bf553d485173e61, type: 3}
+  m_PrefabInstance: {fileID: 301627256}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &748945162
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,8 +615,33 @@ PrefabInstance:
       value: NextButton
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
+      propertyPath: textComponent
+      value: 
+      objectReference: {fileID: 301627259}
+    - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
+      propertyPath: textComponent2
+      value: 
+      objectReference: {fileID: 301627258}
+    - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: texts.Array.size
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
+      propertyPath: titles.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
+      propertyPath: texts.Array.data[0]
+      value: "In diesem Abschnitt lernst du die <b>Pfadsuchealgorithmen Dijkstra
+        und A*</b> kennen. Dijkstra findet den <color=red>k\xFCrzesten Weg in gewichteten
+        Graphen</color>, w\xE4hrend A* zus\xE4tzlich eine <color=red>Heuristik f\xFCr
+        effiziente Pfadsuche</color> nutzt. Ziel ist es, die Anwendungsbereiche und
+        Unterschiede der Algorithmen in verschiedenen <b>Spielszenarien</b> zu verstehen
+        und die optimale Wahl f\xFCr die <b>Pfadsuche</b> zu treffen."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
+      propertyPath: titles.Array.data[0]
+      value: 2. Abschnitt - Dijkstra und A*
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
