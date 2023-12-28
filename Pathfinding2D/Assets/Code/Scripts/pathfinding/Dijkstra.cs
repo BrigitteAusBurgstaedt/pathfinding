@@ -76,10 +76,5 @@ namespace pathfinding
 
             return indexOfNearest;
         }
-
-        public override Object GetVisualNextStep(Tilemap tilemap, out Vector3 position)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

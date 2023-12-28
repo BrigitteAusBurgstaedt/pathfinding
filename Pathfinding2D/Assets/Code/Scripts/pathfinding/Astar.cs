@@ -8,29 +8,7 @@ namespace pathfinding
 {
     public class AStar : PathFindAlgorithm
     {
-        private CoinAStar coinAStar;
-
         public AStar(Tilemap tilemap) : base(tilemap) { }
-
-        public override UnityEngine.Object GetVisualNextStep(Tilemap tilemap, out Vector3 position)
-        {
-            if (!Steps.Any())
-            {
-                position = new Vector3Int();
-                return null;
-            }
-
-            coinAStar = new CoinAStar();
-
-            Spot s = Steps[0];
-            Steps.RemoveAt(0);
-            coinAStar.gCost.SetText(s.G.ToString());
-            coinAStar.fCost.SetText(s.F.ToString());
-            coinAStar.hCost.SetText(s.H.ToString());
-            position = tilemap.CellToWorld(new Vector3Int(s.X, s.Y));
-            Instantiate(coinAStar, position, transform.rotation);
-            return coinAStar;
-        }
 
         protected override bool SearchPath(Spot start, Spot end)
         {

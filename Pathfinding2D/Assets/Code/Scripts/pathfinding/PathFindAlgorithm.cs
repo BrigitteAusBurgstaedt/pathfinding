@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -10,6 +11,12 @@ namespace pathfinding
     /// </summary>
     public abstract class PathFindAlgorithm
     {
+        public event EventHandler OnSearchCompleted;
+        public class OnSearchCompletedArgs : EventArgs
+        {
+            public List<Spot> Steps;
+        }
+
         public Graph Graph { set; get; }
 
         /// <summary>
@@ -107,22 +114,17 @@ namespace pathfinding
                 return new List<Spot>();
             }
 
-            List<Spot> Path = new List<Spot>();
+            List<Spot> path = new List<Spot>();
             var temp = end;
-            Path.Add(temp);
+            path.Add(temp);
             while (temp.Previous != null) // TODO: Evtl. endlos Loop verhindern 
             {
-                Path.Add(temp.Previous);
+                path.Add(temp.Previous);
                 temp = temp.Previous;
             }
-            return Path;
+            OnSearchCompleted?.Invoke(this, new OnSearchCompletedArgs { Steps = Steps });
+            return path;
         }
-
-        /// <summary>
-        /// Zeigt den nächsten Schritt des Algorithmus.
-        /// </summary>
-        /// <returns>Das Objekt welches  wenn es einen nächsten Schritt gegeben hat, null sonst</returns>
-        public abstract Object GetVisualNextStep(Tilemap tilemap, out Vector3 position);
 
         /// <summary>
         /// Der jeweilige Suchalgorithmus.

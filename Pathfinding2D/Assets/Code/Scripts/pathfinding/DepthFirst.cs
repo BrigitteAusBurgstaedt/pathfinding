@@ -13,11 +13,6 @@ namespace pathfinding
 
         public DepthFirst(Tilemap tilemap) : base(tilemap) { }
 
-        public override Object GetVisualNextStep(Tilemap tilemap, out Vector3 position)
-        {
-            throw new System.NotImplementedException();
-        }
-
         protected override bool SearchPath(Spot start, Spot end)
         {
             if (start.Visited == 0) // Aller erster Startknoten

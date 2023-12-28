@@ -10,11 +10,6 @@ namespace pathfinding
 
         public BreadthFirst(Tilemap tilemap) : base(tilemap) { }
 
-        public override Object GetVisualNextStep(Tilemap tilemap, out Vector3 position)
-        {
-            throw new System.NotImplementedException();
-        }
-
         protected override bool SearchPath(Spot start, Spot end)
         {
             List<Spot> waitList = new();     // Enthält die Liste der Knoten die Noch Bearbeitet werden müssen

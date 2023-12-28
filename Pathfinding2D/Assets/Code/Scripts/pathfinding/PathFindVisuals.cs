@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 
 namespace pathfinding
 {
@@ -24,61 +26,12 @@ namespace pathfinding
         // Start is called before the first frame update
         void Start()
         {
-            roadMap.CompressBounds();
-            camera = Camera.main;
 
-            pathFindAlgorithm = new AStar(tilemap);
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetMouseButtonDown(1)) // Rechte Maustaste runter gedrückt -> Start an Position setzten
-            {
-                Vector3 world = camera.ScreenToWorldPoint(Input.mousePosition);
-                Vector3Int gridPos = tilemap.WorldToCell(world);
-                start = new Vector2Int(gridPos.x, gridPos.y);
-            }
-            if (Input.GetMouseButton(2)) // Mittlere Maustaste betätigt -> Road an Position löschen
-            {
-                Vector3 world = camera.ScreenToWorldPoint(Input.mousePosition);
-                Vector3Int gridPos = tilemap.WorldToCell(world);
-                roadMap.SetTile(new Vector3Int(gridPos.x, gridPos.y, 0), null);
-                DestroyAllCoins();
-            }
-            if (Input.GetMouseButtonDown(0)) // Linke Maustaste runter gedrückt -> Pfad zur Position Zeichnen
-            {
-                Vector3 world = camera.ScreenToWorldPoint(Input.mousePosition);
-                Vector3Int gridPos = tilemap.WorldToCell(world);
-
-                if (roadPath != null && roadPath.Count > 0) // Löschen der alten Pfadliste
-                    roadPath.Clear();
-
-                pathFindAlgorithm.LoadGraph(tilemap); // TODO Übergangslösung verbessern (löst das Memory Problem)
-                roadPath = pathFindAlgorithm.CreatePath(start, new Vector2Int(gridPos.x, gridPos.y));
-                if (!roadPath.Any())
-                    return;
-
-                showIterations = true;
-               
-                start = new Vector2Int(roadPath[0].X, roadPath[0].Y);
-            }
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                DrawRoad();
-            }
-            if (Input.GetKeyDown(KeyCode.Tab))
-            {
-                SceneManager.LoadScene(NextScene);
-            }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                DrawCost();
-            }
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                DestroyAllCoins();
-            }
 
 
             if (showIterations)
@@ -87,7 +40,7 @@ namespace pathfinding
                 if (time < 0f)
                 {
                     time = 0.2f;
-                    if (!DrawNextStep()) showIterations = false;             
+                    if (!DrawNextStep()) showIterations = false;
                 }
 
 
@@ -102,8 +55,7 @@ namespace pathfinding
             }
         }
 
-        /*
-
+        
         private void DrawVisitedIteration()
         {
             foreach (Spot s in pathFindAlgorithm.Iterations[0])
@@ -127,16 +79,25 @@ namespace pathfinding
             pathFindAlgorithm.Iterations.RemoveAt(0);
         }
 
-        */
 
         private bool DrawNextStep()
         {
-            Object obj = pathFindAlgorithm.GetVisualNextStep(tilemap, out Vector3 position);
-            if (obj != null)
+            if (!Steps.Any())
             {
-                return true;
+                position = new Vector3Int();
+                return null;
             }
-            return false;
+
+            coinAStar = new CoinAStar();
+
+            Spot s = Steps[0];
+            Steps.RemoveAt(0);
+            coinAStar.gCost.SetText(s.G.ToString());
+            coinAStar.fCost.SetText(s.F.ToString());
+            coinAStar.hCost.SetText(s.H.ToString());
+            position = tilemap.CellToWorld(new Vector3Int(s.X, s.Y));
+            Instantiate(coinAStar, position, transform.rotation);
+            return coinAStar;
         }
 
         private void DrawCost()
