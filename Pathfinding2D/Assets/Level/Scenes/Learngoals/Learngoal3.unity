@@ -133,14 +133,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 169402992589672294, guid: 67f6365ba04ca4e48bf553d485173e61, type: 3}
       propertyPath: m_Text
-      value: "3. Abschnitt - Extrem-/Spezialf\xE4lle"
+      value: 3. Abschnitt - Freies Spiel
       objectReference: {fileID: 0}
     - target: {fileID: 2682964060727177568, guid: 67f6365ba04ca4e48bf553d485173e61, type: 3}
       propertyPath: m_Text
-      value: "Entdecke in diesem Abschnitt die Herausforderungen extremaler Pfadsuche.
-        Lerne, wie du mit nicht-l\xF6sbaren Szenarien umgehst, identifiziere Randbedingungen
-        und bewerte die Anwendbarkeit von Algorithmen in speziellen F\xE4llen.\r\nLerne
-        au\xDFerdem die Bedeutung von Heuristiken kennen."
+      value: Nachdem du nun alle Pfadsuchalgorithmen in den einzelnen Abschnitten
+        kennengelernt hats, kannst du diese jetzt im freien Spiel weiter ausprobieren.
       objectReference: {fileID: 0}
     - target: {fileID: 3830799724715085659, guid: 67f6365ba04ca4e48bf553d485173e61, type: 3}
       propertyPath: m_Pivot.x
@@ -236,6 +234,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3830799724715085659, guid: 67f6365ba04ca4e48bf553d485173e61, type: 3}
   m_PrefabInstance: {fileID: 301627256}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &301627258 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 169402992589672294, guid: 67f6365ba04ca4e48bf553d485173e61, type: 3}
+  m_PrefabInstance: {fileID: 301627256}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &301627259 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2682964060727177568, guid: 67f6365ba04ca4e48bf553d485173e61, type: 3}
+  m_PrefabInstance: {fileID: 301627256}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &748945162
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,11 +612,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: targetScene
-      value: Summary1
+      value: Map_All
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
+      propertyPath: textComponent
+      value: 
+      objectReference: {fileID: 301627259}
+    - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
+      propertyPath: textComponent2
+      value: 
+      objectReference: {fileID: 301627258}
+    - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: texts.Array.size
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
+      propertyPath: titles.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
+      propertyPath: texts.Array.data[0]
+      value: Nachdem du nun alle Pfadsuchalgorithmen in den einzelnen Abschnitten
+        kennengelernt hats, kannst du diese jetzt im freien Spiel weiter ausprobieren.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
+      propertyPath: titles.Array.data[0]
+      value: 3. Abschnitt - Freies Spiel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

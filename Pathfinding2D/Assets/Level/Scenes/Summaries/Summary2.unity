@@ -217,7 +217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: targetScene
-      value: Summary3
+      value: Learngoal3
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: textComponent
@@ -229,43 +229,59 @@ PrefabInstance:
       objectReference: {fileID: 747070343}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: texts.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: titles.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: texts.Array.data[0]
-      value: "Dijkstra ist ein Algorithmus, der in einem <b>gewichteten </b> Graphen
-        den <b>k\xFCrzesten Weg</b> von einem Startpunkt zu allen anderen erreichbaren
-        Punkten findet. Dabei werden die k\xFCrzesten bekannten Wege <b>iterativ</b>
-        aktualisiert, indem immer der Weg mit dem bisher <b>geringsten</b> Gewicht
-        ausgew\xE4hlt wird."
+      value: "Die <b>Dijkstra-Algorithmus</b> ist ein <color=red>gewichteter Algorithmus</color>,
+        der in Graphen verwendet wird, um den <color=red>k\xFCrzesten Weg</color>
+        von einem <b>Startknoten</b> zu allen anderen Knoten zu finden. Im Gegensatz
+        zur <b>Breitensuche</b>, die den k\xFCrzesten Weg in einem ungewichteten
+        Graphen findet, ber\xFCcksichtigt Dijkstra die <color=red>gewichteten Kanten</color>
+        und w\xE4hlt den <color=red>minimalen Pfad</color> basierend auf der <color=red>Gewichtung</color>
+        aus."
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: texts.Array.data[1]
-      value: "Der Algorithmus stellt sicher, dass f\xFCr alle erreichten Punkte v
-        der gefundene Weg von Anfangspunkt s zu v tats\xE4chlich der k\xFCrzeste
-        ist. Die Zeitkomplexit\xE4t betr\xE4gt <b>O((n + m) * log(n))</b>, wobei
-        n die Anzahl der Punkte und m die Anzahl der Kanten im Graphen sind."
+      value: "Der Algorithmus verwendet eine <b>Priority Queue</b>, um die <color=red>aktuellen
+        k\xFCrzesten Distanzen zu verfolgen</color> und priorisiert dabei die <b>Knoten
+        mit geringster Distanz</b>. Dijkstra endet, wenn alle Knoten besucht wurden
+        oder der Zielknoten erreicht wurde. Die <b>Laufzeit</b> betr\xE4gt <color=red>O((|V|
+        + |E|) * log|V|)</color>, wobei |V| die Anzahl der Knoten und |E| die Anzahl
+        der Kanten ist. "
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: texts.Array.data[2]
-      value: "A* ist ein Algorithmus zur Pfadfindung, der <b>heuristische</b> Informationen
-        nutzt, um den <b>k\xFCrzesten</b> Weg von einem Startpunkt zu einem Zielknoten
-        in einem Graphen zu finden. Der Algorithmus bewertet Pfade anhand der <b>Summe
-        der bisherigen Kosten und einer gesch\xE4tzten Kostenfunktion zum Ziel</b>.
-        A* priorisiert Pfade, die wahrscheinlich zum Ziel f\xFChren."
+      value: "Der <b>A*</b>-Algorithmus ist ebenfalls ein <color=red>gewichteter
+        Algorithmus</color> zur <color=red>Pfadfindung</color> in Graphen. Er kombiniert
+        die <b>Vorteile von Dijkstra</b> und der <b>greedy Best-First Suche</b>,
+        indem er eine <color=red>Heuristik</color> verwendet, um die <b>gesch\xE4tzte
+        Entfernung zum Zielknoten</b> zu berechnen.  "
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: texts.Array.data[3]
-      value: "Die St\xE4rke von A* liegt in seiner Effizienz und F\xE4higkeit zur
-        <b>optimalen L\xF6sung</b> f\xFCr k\xFCrzeste Wege. Die Heuristik erm\xF6glicht
-        es dem Algorithmus, sich auf vielversprechende Pfade zu fokussieren und den
-        <b>Suchraum effektiv zu reduzieren</b>. Die Laufzeit von A* h\xE4ngt von
-        der Qualit\xE4t der Heuristik ab, aber in der Praxis erreicht er oft sehr
-        gute Ergebnisse."
+      value: "A* priorisiert Knoten mit einer <color=red>geringeren Gesamtkostenfunktion</color>,
+        die die <b>summierten Kosten vom Startknoten bis zum aktuellen Knoten</b>
+        und die <b>gesch\xE4tzten Kosten vom aktuellen Knoten bis zum Zielknoten</b>
+        ber\xFCcksichtigt. Dies erm\xF6glicht es A*, den <color=red>k\xFCrzesten
+        Weg effizient zu finden</color> und gleichzeitig <b>unn\xF6tiges Explorieren</b>
+        von Pfaden zu minimieren. Die <b>Laufzeit</b> h\xE4ngt stark von der <color=red>Heuristik</color>
+        ab und kann im besten Fall <color=red>O(|E|)</color> betragen."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
+      propertyPath: texts.Array.data[4]
+      value: "Zusammenfassend erm\xF6glichen sowohl der <b>Dijkstra-Algorithmus</b>
+        als auch der <b>A*</b>-Algorithmus die Suche nach dem <color=red>k\xFCrzesten
+        Weg</color> in einem <b>gewichteten Graphen</b>. W\xE4hrend Dijkstra alle
+        m\xF6glichen Pfade erkundet und die <color=red>k\xFCrzesten Distanzen</color>
+        aktualisiert, optimiert A* die Suche durch die Verwendung einer <color=red>Heuristik</color>,
+        um effizienter den <b>optimalen Pfad</b> zu finden. Diese Algorithmen sind
+        besonders n\xFCtzlich in Anwendungen wie <b>Routenplanung</b> und <b>Navigationssystemen</b>,
+        wo die Effizienz der Wegfindung von entscheidender Bedeutung ist. "
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: titles.Array.data[0]
@@ -282,6 +298,10 @@ PrefabInstance:
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: titles.Array.data[3]
       value: Zusammenfassung - A*
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
+      propertyPath: titles.Array.data[4]
+      value: 'Zusammenfassung - Dijkstra und A* '
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
