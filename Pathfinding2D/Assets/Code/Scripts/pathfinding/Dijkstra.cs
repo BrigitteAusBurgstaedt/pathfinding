@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace pathfinding
@@ -21,7 +22,8 @@ namespace pathfinding
             }
             start.Visited = 1;
             Initialize(start);
-            Iterations.Add(waitList); // nur für die Visualisierung
+            foreach(Spot s in waitList)
+                Steps.Add(s); // nur für die Visualisierung
 
             while (waitList.Any())
             {
@@ -34,15 +36,13 @@ namespace pathfinding
                     return true;
                 }
 
-                List<Spot> iteration = new List<Spot>(); // nur für die Visualisierung
-
                 foreach (Spot s in nearest.Neighbors)
                 {
 
                     if (s.IsWalkable && waitList.Contains(s)) // Vgl Visited
                     {
                         int tmp = nearest.Distance + s.Cost; 
-                        iteration.Add(s); // nur für die Visualisierung
+                        Steps.Add(s); // nur für die Visualisierung
 
                         if (tmp < s.Distance)
                         {
@@ -51,8 +51,6 @@ namespace pathfinding
                         }
                     }
                 }
-
-                Iterations.Add(iteration);
             }
 
             return false;
@@ -77,6 +75,11 @@ namespace pathfinding
             }
 
             return indexOfNearest;
+        }
+
+        public override Object GetVisualNextStep(Tilemap tilemap, out Vector3 position)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

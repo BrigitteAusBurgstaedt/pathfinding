@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 namespace pathfinding
 {
-    public class AStar : PathFindAlgorithm<CoinAStar>
+    public class AStar : PathFindAlgorithm
     {
         private CoinAStar coinAStar;
 
         public AStar(Tilemap tilemap) : base(tilemap) { }
 
-        public override CoinAStar GetVisualNextStep(Tilemap tilemap, out Vector3 position)
+        public override UnityEngine.Object GetVisualNextStep(Tilemap tilemap, out Vector3 position)
         {
             if (!Steps.Any())
             {
@@ -21,6 +20,7 @@ namespace pathfinding
                 return null;
             }
 
+            coinAStar = new CoinAStar();
 
             Spot s = Steps[0];
             Steps.RemoveAt(0);
@@ -28,6 +28,7 @@ namespace pathfinding
             coinAStar.fCost.SetText(s.F.ToString());
             coinAStar.hCost.SetText(s.H.ToString());
             position = tilemap.CellToWorld(new Vector3Int(s.X, s.Y));
+            Instantiate(coinAStar, position, transform.rotation);
             return coinAStar;
         }
 

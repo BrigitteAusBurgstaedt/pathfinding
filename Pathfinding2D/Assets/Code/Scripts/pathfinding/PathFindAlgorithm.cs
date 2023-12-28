@@ -4,10 +4,11 @@ using UnityEngine.Tilemaps;
 
 namespace pathfinding
 {
+
     /// <summary>
     /// Abstrakte Klasse für alle Pfadsuchalgorithmen im Projekt.
     /// </summary>
-    public abstract class PathFindAlgorithm<T>
+    public abstract class PathFindAlgorithm
     {
         public Graph Graph { set; get; }
 
@@ -120,8 +121,8 @@ namespace pathfinding
         /// <summary>
         /// Zeigt den nächsten Schritt des Algorithmus.
         /// </summary>
-        /// <returns>Das Objekt welches  wenn es einen nächsten Schritt gegeben hat, false sonst</returns>
-        public abstract T GetVisualNextStep(Tilemap tilemap, out Vector3 position);
+        /// <returns>Das Objekt welches  wenn es einen nächsten Schritt gegeben hat, null sonst</returns>
+        public abstract Object GetVisualNextStep(Tilemap tilemap, out Vector3 position);
 
         /// <summary>
         /// Der jeweilige Suchalgorithmus.

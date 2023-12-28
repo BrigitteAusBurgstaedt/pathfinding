@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Resources;
 using Unity.Collections;
+using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace pathfinding
@@ -12,12 +13,17 @@ namespace pathfinding
 
         public DepthFirst(Tilemap tilemap) : base(tilemap) { }
 
+        public override Object GetVisualNextStep(Tilemap tilemap, out Vector3 position)
+        {
+            throw new System.NotImplementedException();
+        }
+
         protected override bool SearchPath(Spot start, Spot end)
         {
             if (start.Visited == 0) // Aller erster Startknoten
             {
                 start.Visited = 1;
-                Iterations.Add(new List<Spot> { start }); // nur für Visuals
+                Steps.Add(start); // nur für Visuals
             }
 
             if (start.Equals(end))  // Abbruchbedingung
@@ -31,7 +37,7 @@ namespace pathfinding
                 {
                     start.Neighbors[i].Visited = start.Visited + 1;
                     start.Neighbors[i].Previous = start;
-                    Iterations.Add(new List<Spot> { start.Neighbors[i] }); // nur für Visuals
+                    Steps.Add(start.Neighbors[i]); // nur für Visuals
 
                     if (SearchPath(start.Neighbors[i], end))    // Rekursivschritt
                     {

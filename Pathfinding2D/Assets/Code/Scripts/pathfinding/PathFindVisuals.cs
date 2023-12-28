@@ -83,18 +83,13 @@ namespace pathfinding
 
             if (showIterations)
             {
-                if (pathFindAlgorithm.Iterations.Any())
+                time -= Time.deltaTime;
+                if (time < 0f)
                 {
-                    time -= Time.deltaTime;
-                    if (time < 0f)
-                    {
-                        time = 0.2f;
-                        DrawNextStep();             
-                    }
-                } else 
-                {
-                    showIterations = false;
+                    time = 0.2f;
+                    if (!DrawNextStep()) showIterations = false;             
                 }
+
 
             }
         }
@@ -106,6 +101,8 @@ namespace pathfinding
                 roadMap.SetTile(new Vector3Int(roadPath[i].X, roadPath[i].Y, 0), roadTile);
             }
         }
+
+        /*
 
         private void DrawVisitedIteration()
         {
@@ -130,10 +127,16 @@ namespace pathfinding
             pathFindAlgorithm.Iterations.RemoveAt(0);
         }
 
-        private void DrawNextStep()
+        */
+
+        private bool DrawNextStep()
         {
-            Vector3 position = new Vector3();
-            Instantiate(pathFindAlgorithm.GetVisualNextStep(tilemap, position), position, transform.rotation);
+            Object obj = pathFindAlgorithm.GetVisualNextStep(tilemap, out Vector3 position);
+            if (obj != null)
+            {
+                return true;
+            }
+            return false;
         }
 
         private void DrawCost()
