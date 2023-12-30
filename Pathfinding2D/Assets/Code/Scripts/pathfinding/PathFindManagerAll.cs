@@ -4,30 +4,20 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+using static pathfinding.PathFindManager;
 
 namespace pathfinding
 {
-    public class PathFindManager : MonoBehaviour
+    public class PathFindManagerAll : MonoBehaviour
     {
         public event EventHandler<OnAlgoInitArgs> OnAlgoInit;
-        public class OnAlgoInitArgs : EventArgs
-        {
-            public PathFindAlgorithm pathFindAlgorithm;
-        }
         public event EventHandler<OnDrawRoadArgs> OnDrawRoad;
-        public class OnDrawRoadArgs : EventArgs
-        {
-            public List<Spot> road;
-        }
         public event EventHandler<OnDrawCostArgs> OnDrawCost;
-        public class OnDrawCostArgs : EventArgs
-        {
-            public Graph graph;
-        }
         public event EventHandler OnDestroyAllCoins;
 
         [SerializeField] private string nextScene;
-        [SerializeField] private int indexOfAlgorithm;
+        public int indexOfAlgorithm { get; set; }
+        private int _indexOfAlgorithm;
         [SerializeField] private Tilemap tilemap;
         [SerializeField] private Tilemap roadMap;
         [SerializeField] private Vector2Int startPos;
@@ -41,7 +31,15 @@ namespace pathfinding
             roadMap.CompressBounds();
             camera = Camera.main;
 
-            switch (indexOfAlgorithm)
+            pathFindAlgorithm = new AStar(tilemap);
+
+            OnAlgoInit?.Invoke(this, new OnAlgoInitArgs() { pathFindAlgorithm = pathFindAlgorithm });
+        }
+
+        public void ChangeAlgorithm(int index)
+        {
+            _indexOfAlgorithm = index;
+            switch (_indexOfAlgorithm)
             {
                 case 1:
                     pathFindAlgorithm = new BreadthFirst(tilemap);
@@ -52,11 +50,13 @@ namespace pathfinding
                 case 3:
                     pathFindAlgorithm = new Dijkstra(tilemap);
                     break;
+                case 4:
+                    pathFindAlgorithm = new AStar(tilemap);
+                    break;
                 default:
                     pathFindAlgorithm = new AStar(tilemap);
                     break;
             }
-
             OnAlgoInit?.Invoke(this, new OnAlgoInitArgs() { pathFindAlgorithm = pathFindAlgorithm });
         }
 
@@ -88,7 +88,7 @@ namespace pathfinding
                 roadPath = pathFindAlgorithm.CreatePath(startPos, new Vector2Int(gridPos.x, gridPos.y));
                 if (!roadPath.Any())
                     return;
-
+               
                 startPos = new Vector2Int(roadPath[0].X, roadPath[0].Y);
             }
             if (Input.GetKeyDown(KeyCode.Return))
@@ -107,7 +107,6 @@ namespace pathfinding
             {
                 OnDestroyAllCoins?.Invoke(this, EventArgs.Empty);
             }
-
         }
     }
 }

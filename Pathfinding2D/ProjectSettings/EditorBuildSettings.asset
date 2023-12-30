@@ -36,14 +36,17 @@ EditorBuildSettings:
     path: Assets/Level/Scenes/Summaries/Summary3.unity
     guid: 3f353de5b5a821b43b853c933d908d3d
   - enabled: 1
-    path: Assets/Level/Scenes/Maps/Map_Tiles_Intro.unity
-    guid: 76a66d2e99bfc4e45bbac1e6df365220
-  - enabled: 1
     path: Assets/Level/Scenes/Maps/Map_Breadth.unity
     guid: 171aed325a251ea4b8c3294063cd7f98
   - enabled: 1
     path: Assets/Level/Scenes/Maps/Map_Depth.unity
     guid: 16c8638fb15fc414a952c11bf566c100
+  - enabled: 1
+    path: Assets/Level/Scenes/Maps/Map_Dijkstra.unity
+    guid: cf2657e25053d44bd832b76e64fafd24
+  - enabled: 1
+    path: Assets/Level/Scenes/Maps/Map_AStar.unity
+    guid: 92da7ad9c84b64a2faf7f95cee21b25d
   - enabled: 1
     path: Assets/Level/Scenes/Maps/Map_All.unity
     guid: aa5056f1a58aef148968299f4f31cb1f

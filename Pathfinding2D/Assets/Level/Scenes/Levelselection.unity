@@ -731,7 +731,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Map_Depth
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1052785537
@@ -972,7 +972,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Map_AStar
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1223794351
@@ -1134,7 +1134,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Map_All
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1457344347
@@ -1296,7 +1296,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Map_Breadth
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1488843657
@@ -1798,7 +1798,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Map_Dijkstra
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2043167308

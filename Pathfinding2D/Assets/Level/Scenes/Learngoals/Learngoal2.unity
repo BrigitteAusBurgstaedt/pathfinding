@@ -615,6 +615,10 @@ PrefabInstance:
       value: NextButton
       objectReference: {fileID: 0}
     - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
+      propertyPath: targetScene
+      value: Map_Dijkstra
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051667675571117708, guid: 88be27073098f9043987f0d8c9ab5f12, type: 3}
       propertyPath: textComponent
       value: 
       objectReference: {fileID: 301627259}

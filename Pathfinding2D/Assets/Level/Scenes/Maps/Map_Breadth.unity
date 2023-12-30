@@ -536,6 +536,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1579992534}
   - component: {fileID: 1579992533}
+  - component: {fileID: 1579992536}
   - component: {fileID: 1579992535}
   m_Layer: 0
   m_Name: Grid
@@ -582,16 +583,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 1579992531}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f0994948c8615d4bb6aaf81c9e11dc0, type: 3}
+  m_Script: {fileID: 11500000, guid: cb37ce3276039474f9ea67fa067bb594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextScene: Quiz_UI
+  nextScene: Map_Depth
+  indexOfAlgorithm: 1
+  tilemap: {fileID: 2025556872}
+  roadMap: {fileID: 1878822936}
+  startPos: {x: 0, y: 0}
+--- !u!114 &1579992536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579992531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2eb1db00e2df4eb8bf1e3198f492284, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   coin: {fileID: 5062231406252610891, guid: f92f502708efa3540bedfd077d8c6095, type: 3}
   coinAStar: {fileID: 278026008520648372, guid: c2037d15edd236e41a626f9abbf6061c, type: 3}
   tilemap: {fileID: 2025556872}
   roadMap: {fileID: 1878822936}
   roadTile: {fileID: 11400000, guid: 9ef3664beed360b4eaba3ef1b15c7d9a, type: 2}
-  start: {x: 0, y: 0}
+  waitTime: 0.1
 --- !u!1 &1878822935
 GameObject:
   m_ObjectHideFlags: 0

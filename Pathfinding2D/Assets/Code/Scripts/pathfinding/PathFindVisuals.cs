@@ -15,16 +15,58 @@ namespace pathfinding
         public Tilemap roadMap;
         public TileBase roadTile;
         private PathFindAlgorithm pathFindAlgorithm;
-        private List<Spot> roadPath = new List<Spot>();
         private List<Spot> steps = new List<Spot>();
-        public Vector2Int start;
         [SerializeField] private float waitTime = 0.1f;
 
         // Start is called before the first frame update
         void Start()
         {
             PathFindManager pathFindManager = GetComponent<PathFindManager>();
-            pathFindManager.OnAlgoInit += PathFindManager_OnAlgoInit;
+            PathFindManagerAll pathFindManagerAll = GetComponent<PathFindManagerAll>();
+
+            if (pathFindManager != null)
+            {
+                pathFindManager.OnAlgoInit += PathFindManager_OnAlgoInit;
+                pathFindManager.OnDestroyAllCoins += PathFindManager_OnDestroyAllCoins;
+                pathFindManager.OnDrawCost += PathFindManager_OnDrawCost;
+                pathFindManager.OnDrawRoad += PathFindManager_OnDrawRoad;
+            }
+            if (pathFindManagerAll != null)
+            {
+                pathFindManagerAll.OnAlgoInit += PathFindManager_OnAlgoInit;
+                pathFindManagerAll.OnDestroyAllCoins += PathFindManager_OnDestroyAllCoins;
+                pathFindManagerAll.OnDrawCost += PathFindManager_OnDrawCost;
+                pathFindManagerAll.OnDrawRoad += PathFindManager_OnDrawRoad;
+            }
+        }
+
+        private void PathFindManager_OnDrawRoad(object sender, PathFindManager.OnDrawRoadArgs e)
+        {
+            for (int i = 1; i < e.road.Count - 1; i++) // Start und Ziel sollen nicht mit angezeigt werden als Pfad
+            {
+                roadMap.SetTile(new Vector3Int(e.road[i].X, e.road[i].Y, 0), roadTile);
+            }
+        }
+
+        private void PathFindManager_OnDrawCost(object sender, PathFindManager.OnDrawCostArgs e)
+        {
+            foreach (Spot s in e.graph.Spots)
+            {
+                if (s.IsWalkable)
+                {
+                    coin.CoinText.SetText(s.Cost.ToString());
+                    Instantiate(coin, tilemap.CellToWorld(new Vector3Int(s.X, s.Y, 0)), transform.rotation);
+                }
+            }
+        }
+
+        private void PathFindManager_OnDestroyAllCoins(object sender, EventArgs e)
+        {
+            GameObject[] allCoins = GameObject.FindGameObjectsWithTag("Coin");
+            foreach (GameObject obj in allCoins)
+            {
+                Destroy(obj);
+            }
         }
 
         IEnumerator NextStep()
@@ -44,17 +86,8 @@ namespace pathfinding
 
         private void PathFindAlgorithm_OnSearchCompleted(object sender, PathFindAlgorithm.OnSearchCompletedArgs args)
         {
-            Debug.Log("Hallo? " + pathFindAlgorithm);
             steps = args.Steps;
             StartCoroutine(NextStep());
-        }
-
-        private void DrawRoad()
-        {
-            for (int i = 1; i < roadPath.Count - 1; i++) // Start und Ziel sollen nicht mit angezeigt werden als Pfad
-            {
-                roadMap.SetTile(new Vector3Int(roadPath[i].X, roadPath[i].Y, 0), roadTile);
-            }
         }
 
         private void DrawNextStep()
@@ -67,7 +100,7 @@ namespace pathfinding
             {
                 coin.CoinText.SetText(s.Visited.ToString() + ".");
                 Vector3 position = tilemap.CellToWorld(new Vector3Int(s.X, s.Y));
-                Instantiate(coinAStar, position, transform.rotation);
+                Instantiate(coin, position, transform.rotation);
             }
             else if (pathFindAlgorithm.GetType().Equals(typeof(Dijkstra)))
             {
@@ -84,29 +117,6 @@ namespace pathfinding
                 coinAStar.hCost.SetText(s.H.ToString());
                 Vector3 position = tilemap.CellToWorld(new Vector3Int(s.X, s.Y));
                 Instantiate(coinAStar, position, transform.rotation);
-            }
-        }
-
-        /*
-        private void DrawCost()
-        {
-            foreach (Spot s in pathFindAlgorithm.Graph.Spots)
-            {
-                if (s.IsWalkable)
-                {
-                    coin.CoinText.SetText(s.Cost.ToString());
-                    Instantiate(coin, tilemap.CellToWorld(new Vector3Int(s.X, s.Y, 0)), transform.rotation);
-                }
-            }
-        }
-        */
-
-        private void DestroyAllCoins()
-        {
-            GameObject[] allCoins = GameObject.FindGameObjectsWithTag("Coin");
-            foreach (GameObject obj in allCoins)
-            {
-                Destroy(obj);
             }
         }
     }
