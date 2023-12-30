@@ -11,7 +11,7 @@ namespace pathfinding
     /// </summary>
     public abstract class PathFindAlgorithm
     {
-        public event EventHandler OnSearchCompleted;
+        public event EventHandler<OnSearchCompletedArgs> OnSearchCompleted;
         public class OnSearchCompletedArgs : EventArgs
         {
             public List<Spot> Steps;

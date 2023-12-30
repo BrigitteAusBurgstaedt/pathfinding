@@ -1,50 +1,52 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
 
 namespace pathfinding
 {
     public class PathFindVisuals : MonoBehaviour
     {
-        public string NextScene;
-        public Coin coin;
+        [SerializeField] private Coin coin;
+        [SerializeField] private CoinAStar coinAStar;
         public Tilemap tilemap;
         public Tilemap roadMap;
         public TileBase roadTile;
-        public Vector3Int[,] spots;
-        PathFindAlgorithm pathFindAlgorithm;
-        List<Spot> roadPath = new List<Spot>();
-        new Camera camera;
+        private PathFindAlgorithm pathFindAlgorithm;
+        private List<Spot> roadPath = new List<Spot>();
+        private List<Spot> steps = new List<Spot>();
         public Vector2Int start;
-        private float time = 0f;
-        private bool showIterations = false;
+        [SerializeField] private float waitTime = 0.1f;
 
         // Start is called before the first frame update
         void Start()
         {
-
+            PathFindManager pathFindManager = GetComponent<PathFindManager>();
+            pathFindManager.OnAlgoInit += PathFindManager_OnAlgoInit;
         }
 
-        // Update is called once per frame
-        void Update()
+        IEnumerator NextStep()
         {
-
-
-            if (showIterations)
+            while (steps.Any())
             {
-                time -= Time.deltaTime;
-                if (time < 0f)
-                {
-                    time = 0.2f;
-                    if (!DrawNextStep()) showIterations = false;
-                }
-
-
+                DrawNextStep();
+                yield return new WaitForSeconds(waitTime);
             }
+        }
+
+        private void PathFindManager_OnAlgoInit(object sender, PathFindManager.OnAlgoInitArgs args)
+        {
+            pathFindAlgorithm = args.pathFindAlgorithm; 
+            pathFindAlgorithm.OnSearchCompleted += PathFindAlgorithm_OnSearchCompleted;
+        }
+
+        private void PathFindAlgorithm_OnSearchCompleted(object sender, PathFindAlgorithm.OnSearchCompletedArgs args)
+        {
+            Debug.Log("Hallo? " + pathFindAlgorithm);
+            steps = args.Steps;
+            StartCoroutine(NextStep());
         }
 
         private void DrawRoad()
@@ -55,20 +57,19 @@ namespace pathfinding
             }
         }
 
-        
-        private void DrawVisitedIteration()
+        private void DrawNextStep()
         {
-            foreach (Spot s in pathFindAlgorithm.Iterations[0])
+            Spot s = steps[0];
+            steps.RemoveAt(0);
+
+
+            if (pathFindAlgorithm.GetType().Equals(typeof(BreadthFirst)) || pathFindAlgorithm.GetType().Equals(typeof(DepthFirst)))
             {
                 coin.CoinText.SetText(s.Visited.ToString() + ".");
-                Instantiate(coin, tilemap.CellToWorld(new Vector3Int(s.X, s.Y, 0)), transform.rotation);
+                Vector3 position = tilemap.CellToWorld(new Vector3Int(s.X, s.Y));
+                Instantiate(coinAStar, position, transform.rotation);
             }
-            pathFindAlgorithm.Iterations.RemoveAt(0);
-        }
-
-        private void DrawDistanceIteration() 
-        {
-            foreach (Spot s in pathFindAlgorithm.Iterations[0])
+            else if (pathFindAlgorithm.GetType().Equals(typeof(Dijkstra)))
             {
                 if (s.Distance == int.MaxValue)
                     coin.CoinText.SetText("∞");
@@ -76,30 +77,17 @@ namespace pathfinding
                     coin.CoinText.SetText(s.Distance.ToString());
                 Instantiate(coin, tilemap.CellToWorld(new Vector3Int(s.X, s.Y, 0)), transform.rotation);
             }
-            pathFindAlgorithm.Iterations.RemoveAt(0);
-        }
-
-
-        private bool DrawNextStep()
-        {
-            if (!Steps.Any())
+            else if (pathFindAlgorithm.GetType().Equals(typeof(AStar)))
             {
-                position = new Vector3Int();
-                return null;
+                coinAStar.gCost.SetText(s.G.ToString());
+                coinAStar.fCost.SetText(s.F.ToString());
+                coinAStar.hCost.SetText(s.H.ToString());
+                Vector3 position = tilemap.CellToWorld(new Vector3Int(s.X, s.Y));
+                Instantiate(coinAStar, position, transform.rotation);
             }
-
-            coinAStar = new CoinAStar();
-
-            Spot s = Steps[0];
-            Steps.RemoveAt(0);
-            coinAStar.gCost.SetText(s.G.ToString());
-            coinAStar.fCost.SetText(s.F.ToString());
-            coinAStar.hCost.SetText(s.H.ToString());
-            position = tilemap.CellToWorld(new Vector3Int(s.X, s.Y));
-            Instantiate(coinAStar, position, transform.rotation);
-            return coinAStar;
         }
 
+        /*
         private void DrawCost()
         {
             foreach (Spot s in pathFindAlgorithm.Graph.Spots)
@@ -111,6 +99,7 @@ namespace pathfinding
                 }
             }
         }
+        */
 
         private void DestroyAllCoins()
         {

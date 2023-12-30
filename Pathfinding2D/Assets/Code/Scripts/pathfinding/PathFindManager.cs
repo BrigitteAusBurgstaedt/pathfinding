@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,15 +9,21 @@ namespace pathfinding
 {
     public class PathFindManager : MonoBehaviour
     {
+        public event EventHandler<OnAlgoInitArgs> OnAlgoInit;
+        public class OnAlgoInitArgs : EventArgs
+        {
+            public PathFindAlgorithm pathFindAlgorithm;
+        }
+
         [SerializeField] private string nextScene;
         [SerializeField] private int indexOfAlgorithm;
         [SerializeField] private Tilemap tilemap;
         [SerializeField] private Tilemap roadMap;
         [SerializeField] private TileBase roadTile;
+        [SerializeField] private Vector2Int startPos;
         private PathFindAlgorithm pathFindAlgorithm;
         private List<Spot> roadPath = new();
         private new Camera camera;
-        [SerializeField] private Vector2Int startPos;
 
         // Start is called before the first frame update
         void Start()
@@ -40,6 +47,7 @@ namespace pathfinding
                     break;
             }
 
+            OnAlgoInit?.Invoke(this, new OnAlgoInitArgs() { pathFindAlgorithm = pathFindAlgorithm });
         }
 
         // Update is called once per frame
@@ -56,7 +64,7 @@ namespace pathfinding
                 Vector3 world = camera.ScreenToWorldPoint(Input.mousePosition);
                 Vector3Int gridPos = tilemap.WorldToCell(world);
                 roadMap.SetTile(new Vector3Int(gridPos.x, gridPos.y, 0), null);
-                DestroyAllCoins();
+                // DestroyAllCoins();
             }
             if (Input.GetMouseButtonDown(0)) // Linke Maustaste runter gedrückt -> Pfad zur Position Zeichnen
             {
@@ -70,14 +78,12 @@ namespace pathfinding
                 roadPath = pathFindAlgorithm.CreatePath(startPos, new Vector2Int(gridPos.x, gridPos.y));
                 if (!roadPath.Any())
                     return;
-
-                showIterations = true;
                
                 startPos = new Vector2Int(roadPath[0].X, roadPath[0].Y);
             }
             if (Input.GetKeyDown(KeyCode.Return))
             {
-                DrawRoad();
+                // DrawRoad();
             }
             if (Input.GetKeyDown(KeyCode.Tab))
             {
@@ -85,25 +91,13 @@ namespace pathfinding
             }
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                DrawCost();
+                // DrawCost();
             }
             if (Input.GetKeyUp(KeyCode.Space))
             {
-                DestroyAllCoins();
+                // DestroyAllCoins();
             }
 
-
-            if (showIterations)
-            {
-                time -= Time.deltaTime;
-                if (time < 0f)
-                {
-                    time = 0.2f;
-                    if (!DrawNextStep()) showIterations = false;             
-                }
-
-
-            }
         }
     }
 }
