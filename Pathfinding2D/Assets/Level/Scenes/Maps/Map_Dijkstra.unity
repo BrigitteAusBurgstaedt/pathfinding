@@ -224,6 +224,10 @@ PrefabInstance:
       propertyPath: carakter
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5827247490959343577, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
+      propertyPath: textValue
+      value: Um mit dem Dijkstra Algorithmus deinen Weg zu finden, versuchst du immer erst Stück für Stück, auf der Karte, die einfachsten Wege abzusuchen, bevor du schwerere Wege ausprobierst. Also versuchst du immer erst die Wiesen abzusuchen, bevor du durch die Wälder oder über die Berge gehst. Wenn du dann das Ziel gefunden hast, schaust du dann nochmal auf deine Karte und überlegst dir, ob du nicht doch eventuell durch einen Wald oder über einen Berg gehen kannst, anstatt über zwei oder vier Wiesen zu gehen, um einen schnelleren Weg zu finden. Wenn du dir dann alle Wege angeschaut hast, nimmst du den Weg, der sowohl am kürzesten und auch am unaufwändigsten ist. 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

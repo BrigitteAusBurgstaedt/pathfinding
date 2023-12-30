@@ -321,6 +321,10 @@ PrefabInstance:
       propertyPath: carakter
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5827247490959343577, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
+      propertyPath: textValue
+      value: Um auf meine erste Methode zurückzukommen. Bei der Breitensuche suchst du von deiner Startstadt aus kreisförmig, Wiese für Wiese ab und machst mit den angrenzenden Wiesen weiter. Das machst du so lange bis du deine Zielstadt gefunden hast. Dann leitest du dir daraus einen Weg ab, damit du auch in Zukunft deinen Weg findest. Diese Methode findet also recht schnell deine gesuchte Stadt, wenn diese in irgendeiner Richtung, aber recht nah, liegt.
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -224,6 +224,10 @@ PrefabInstance:
       propertyPath: carakter
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5827247490959343577, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
+      propertyPath: textValue
+      value: Die zweite Methode befasst sich eher mit längeren Distanzen, die in einer möglichst geraden Richtung liegt. Dabei sucht du mit der Tiefensuche zuerst in deiner Startstadt alle Wiesen in eine Richtung ab, bevor du eine andere Richtung erkundest. Hier suchst du ebenfalls so lange, bis du das Ziel gefunden hast.
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -608,8 +612,7 @@ MonoBehaviour:
   indexOfAlgorithm: 2
   tilemap: {fileID: 2025556872}
   roadMap: {fileID: 1878822936}
-  startPosition: {x: 0, y: 0}
-  endPosition: {x: 3, y: 3}
+  startPos: {x: 0, y: 0}
 --- !u!1 &1878822935
 GameObject:
   m_ObjectHideFlags: 0

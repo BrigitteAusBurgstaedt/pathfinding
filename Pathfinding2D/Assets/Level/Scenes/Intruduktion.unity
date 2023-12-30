@@ -175,6 +175,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TextBuble
       objectReference: {fileID: 0}
+    - target: {fileID: 5827247490959343577, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
+      propertyPath: textValue
+      value: Hallo mein Lehrling, ich bin dein Lehrmeister. Mein Name ist Gandalf. Ich werde dir bei deinem Weg zu der Stadt helfen. Dabei werde ich dich über Wiesen, durch Wälder und über Berge verhelfen. Nun lass uns aber mal schauen, wie ich dir jetzt genau helfen kann.
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
