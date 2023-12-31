@@ -540,8 +540,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1579992534}
   - component: {fileID: 1579992533}
-  - component: {fileID: 1579992536}
   - component: {fileID: 1579992535}
+  - component: {fileID: 1579992536}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -612,7 +612,6 @@ MonoBehaviour:
   tilemap: {fileID: 2025556872}
   roadMap: {fileID: 1878822936}
   roadTile: {fileID: 11400000, guid: 9ef3664beed360b4eaba3ef1b15c7d9a, type: 2}
-  waitTime: 0.1
 --- !u!1 &1878822935
 GameObject:
   m_ObjectHideFlags: 0
