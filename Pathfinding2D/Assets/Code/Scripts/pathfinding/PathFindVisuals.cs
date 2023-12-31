@@ -16,7 +16,8 @@ namespace pathfinding
         public TileBase roadTile;
         private PathFindAlgorithm pathFindAlgorithm;
         private List<Spot> steps = new List<Spot>();
-        [SerializeField] private float waitTime = 0.1f;
+        private float waitTime = 0.1f;
+        private Coroutine nextStep = null;
 
         // Start is called before the first frame update
         void Start()
@@ -54,7 +55,7 @@ namespace pathfinding
             {
                 if (s.IsWalkable)
                 {
-                    coin.CoinText.SetText(s.Cost.ToString());
+                    coin.CoinText.SetText(s.Cost.ToString() + "€");
                     Instantiate(coin, tilemap.CellToWorld(new Vector3Int(s.X, s.Y, 0)), transform.rotation);
                 }
             }
@@ -62,6 +63,7 @@ namespace pathfinding
 
         private void PathFindManager_OnDestroyAllCoins(object sender, EventArgs e)
         {
+            if (nextStep != null) StopCoroutine(nextStep);
             GameObject[] allCoins = GameObject.FindGameObjectsWithTag("Coin");
             foreach (GameObject obj in allCoins)
             {
@@ -80,14 +82,35 @@ namespace pathfinding
 
         private void PathFindManager_OnAlgoInit(object sender, PathFindManager.OnAlgoInitArgs args)
         {
-            pathFindAlgorithm = args.pathFindAlgorithm; 
+            pathFindAlgorithm = args.pathFindAlgorithm;
+            waitTime = (pathFindAlgorithm.GetType() == typeof(Dijkstra)) ? 0.01f : 0.1f;
+
+            if (nextStep != null)
+            {
+                StopCoroutine(nextStep);
+                GameObject[] allCoins = GameObject.FindGameObjectsWithTag("Coin");
+                foreach (GameObject obj in allCoins)
+                {
+                    Destroy(obj);
+                }
+            }
             pathFindAlgorithm.OnSearchCompleted += PathFindAlgorithm_OnSearchCompleted;
+            Debug.Log("Algo gefunden " + pathFindAlgorithm);
         }
 
         private void PathFindAlgorithm_OnSearchCompleted(object sender, PathFindAlgorithm.OnSearchCompletedArgs args)
         {
             steps = args.Steps;
-            StartCoroutine(NextStep());
+            if (nextStep != null)
+            {
+                StopCoroutine(nextStep);
+                GameObject[] allCoins = GameObject.FindGameObjectsWithTag("Coin");
+                foreach (GameObject obj in allCoins)
+                {
+                    Destroy(obj);
+                }
+            }
+            nextStep = StartCoroutine(NextStep());
         }
 
         private void DrawNextStep()
