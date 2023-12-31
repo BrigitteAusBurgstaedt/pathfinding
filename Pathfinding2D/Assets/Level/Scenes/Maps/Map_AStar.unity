@@ -512,7 +512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextScene: Map_All
-  indexOfAlgorithm: 0
+  indexOfAlgorithm: 4
   tilemap: {fileID: 1894593222}
   roadMap: {fileID: 1878822936}
   startPos: {x: 0, y: 0}
