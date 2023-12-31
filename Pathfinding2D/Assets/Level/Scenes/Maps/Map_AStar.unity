@@ -226,7 +226,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5827247490959343577, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
       propertyPath: textValue
-      value: Die Zweite Methode, die ich dir anbieten kann, ist der Astern Algorithmus. Um mit dieser Methode den richtigen Weg zu finden, musst du dir immer bei der Planung der Überquerung des Geländes auch gleich einen Weg zu deinem Ziel überlegen. Du versuchst also mit jeder Wiese oder jedem Wald, welche du durchquerst, dir immer gleich einen Weg zum Ziel zu überlegen. Dadurch kannst du gleich mit jedem Meter, den du voranschreitest, einen oder mehrere Wege zu deiner Zielstadt finden.
+      value: "Die Zweite Methode, die ich dir anbieten kann, ist der Astern Algorithmus.
+        Um mit dieser Methode den richtigen Weg zu finden, musst du dir immer bei
+        der Planung der \xDCberquerung des Gel\xE4ndes auch gleich einen Weg zu deinem
+        Ziel \xFCberlegen. Du versuchst also mit jeder Wiese oder jedem Wald, welche
+        du durchquerst, dir immer gleich einen Weg zum Ziel zu \xFCberlegen. Dadurch
+        kannst du gleich mit jedem Meter, den du voranschreitest, einen oder mehrere
+        Wege zu deiner Zielstadt finden."
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -493,7 +499,6 @@ MonoBehaviour:
   tilemap: {fileID: 1894593222}
   roadMap: {fileID: 1878822936}
   roadTile: {fileID: 11400000, guid: 9ef3664beed360b4eaba3ef1b15c7d9a, type: 2}
-  waitTime: 0.1
 --- !u!114 &1579992536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -585,11 +590,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8554413085524936398, guid: fade1c63b8ec87340b8abf864390be04, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 792.08
+      value: 802
       objectReference: {fileID: 0}
     - target: {fileID: 8554413085524936398, guid: fade1c63b8ec87340b8abf864390be04, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -5.3076
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8554413085524936398, guid: fade1c63b8ec87340b8abf864390be04, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

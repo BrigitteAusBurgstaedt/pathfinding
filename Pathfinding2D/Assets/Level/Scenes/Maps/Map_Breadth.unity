@@ -323,7 +323,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5827247490959343577, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
       propertyPath: textValue
-      value: Um auf meine erste Methode zurückzukommen. Bei der Breitensuche suchst du von deiner Startstadt aus kreisförmig, Wiese für Wiese ab und machst mit den angrenzenden Wiesen weiter. Das machst du so lange bis du deine Zielstadt gefunden hast. Dann leitest du dir daraus einen Weg ab, damit du auch in Zukunft deinen Weg findest. Diese Methode findet also recht schnell deine gesuchte Stadt, wenn diese in irgendeiner Richtung, aber recht nah, liegt.
+      value: "Um auf meine erste Methode zur\xFCckzukommen. Bei der Breitensuche
+        suchst du von deiner Startstadt aus kreisf\xF6rmig, Wiese f\xFCr Wiese ab
+        und machst mit den angrenzenden Wiesen weiter. Das machst du so lange bis
+        du deine Zielstadt gefunden hast. Dann leitest du dir daraus einen Weg ab,
+        damit du auch in Zukunft deinen Weg findest. Diese Methode findet also recht
+        schnell deine gesuchte Stadt, wenn diese in irgendeiner Richtung, aber recht
+        nah, liegt."
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -541,7 +547,6 @@ GameObject:
   - component: {fileID: 1579992534}
   - component: {fileID: 1579992533}
   - component: {fileID: 1579992535}
-  - component: {fileID: 1579992536}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -595,23 +600,6 @@ MonoBehaviour:
   tilemap: {fileID: 2025556872}
   roadMap: {fileID: 1878822936}
   startPos: {x: 0, y: 0}
---- !u!114 &1579992536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1579992531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2eb1db00e2df4eb8bf1e3198f492284, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coin: {fileID: 5062231406252610891, guid: f92f502708efa3540bedfd077d8c6095, type: 3}
-  coinAStar: {fileID: 278026008520648372, guid: c2037d15edd236e41a626f9abbf6061c, type: 3}
-  tilemap: {fileID: 2025556872}
-  roadMap: {fileID: 1878822936}
-  roadTile: {fileID: 11400000, guid: 9ef3664beed360b4eaba3ef1b15c7d9a, type: 2}
 --- !u!1 &1878822935
 GameObject:
   m_ObjectHideFlags: 0

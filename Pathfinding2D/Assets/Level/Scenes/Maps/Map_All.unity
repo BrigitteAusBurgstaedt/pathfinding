@@ -197,11 +197,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8554413085524936398, guid: fade1c63b8ec87340b8abf864390be04, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 792.08
+      value: 804
       objectReference: {fileID: 0}
     - target: {fileID: 8554413085524936398, guid: fade1c63b8ec87340b8abf864390be04, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -5.3076
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8554413085524936398, guid: fade1c63b8ec87340b8abf864390be04, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1424,7 +1424,6 @@ MonoBehaviour:
   tilemap: {fileID: 2025556872}
   roadMap: {fileID: 1878822936}
   roadTile: {fileID: 11400000, guid: 9ef3664beed360b4eaba3ef1b15c7d9a, type: 2}
-  waitTime: 0.1
 --- !u!114 &1579992536
 MonoBehaviour:
   m_ObjectHideFlags: 0

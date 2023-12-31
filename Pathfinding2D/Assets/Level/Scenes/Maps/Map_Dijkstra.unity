@@ -226,7 +226,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5827247490959343577, guid: e7110b821bfaa2c47b92743ccdafe76b, type: 3}
       propertyPath: textValue
-      value: Um mit dem Dijkstra Algorithmus deinen Weg zu finden, versuchst du immer erst Stück für Stück, auf der Karte, die einfachsten Wege abzusuchen, bevor du schwerere Wege ausprobierst. Also versuchst du immer erst die Wiesen abzusuchen, bevor du durch die Wälder oder über die Berge gehst. Wenn du dann das Ziel gefunden hast, schaust du dann nochmal auf deine Karte und überlegst dir, ob du nicht doch eventuell durch einen Wald oder über einen Berg gehen kannst, anstatt über zwei oder vier Wiesen zu gehen, um einen schnelleren Weg zu finden. Wenn du dir dann alle Wege angeschaut hast, nimmst du den Weg, der sowohl am kürzesten und auch am unaufwändigsten ist. 
+      value: "Um mit dem Dijkstra Algorithmus deinen Weg zu finden, versuchst du
+        immer erst St\xFCck f\xFCr St\xFCck, auf der Karte, die einfachsten Wege
+        abzusuchen, bevor du schwerere Wege ausprobierst. Also versuchst du immer
+        erst die Wiesen abzusuchen, bevor du durch die W\xE4lder oder \xFCber die
+        Berge gehst. Wenn du dann das Ziel gefunden hast, schaust du dann nochmal
+        auf deine Karte und \xFCberlegst dir, ob du nicht doch eventuell durch einen
+        Wald oder \xFCber einen Berg gehen kannst, anstatt \xFCber zwei oder vier
+        Wiesen zu gehen, um einen schnelleren Weg zu finden. Wenn du dir dann alle
+        Wege angeschaut hast, nimmst du den Weg, der sowohl am k\xFCrzesten und auch
+        am unaufw\xE4ndigsten ist."
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -584,11 +593,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8554413085524936398, guid: fade1c63b8ec87340b8abf864390be04, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 792.08
+      value: 804
       objectReference: {fileID: 0}
     - target: {fileID: 8554413085524936398, guid: fade1c63b8ec87340b8abf864390be04, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -5.3076
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8554413085524936398, guid: fade1c63b8ec87340b8abf864390be04, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
