@@ -19,8 +19,8 @@ namespace pathfinding
         private float waitTime = 0.1f;
         private Coroutine nextStep = null;
 
-        // Start is called before the first frame update
-        void Start()
+        // Awake is called before Start
+        void Awake()
         {
             PathFindManager pathFindManager = GetComponent<PathFindManager>();
             PathFindManagerAll pathFindManagerAll = GetComponent<PathFindManagerAll>();
