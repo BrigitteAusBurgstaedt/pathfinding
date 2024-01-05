@@ -611,7 +611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb37ce3276039474f9ea67fa067bb594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: Quiz_UI_BuT
+  nextScene: Summary1
   indexOfAlgorithm: 2
   tilemap: {fileID: 2025556872}
   roadMap: {fileID: 1878822936}

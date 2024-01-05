@@ -11,6 +11,12 @@ public class TextManager : MonoBehaviour
     private string[] texts;      // Texte für aktuelle Szene
 
     [SerializeField]
+    private AudioSource audioSource;
+
+    [SerializeField]
+    private AudioClip[] audio;  
+
+    [SerializeField]
     private Text textComponent2;
 
     [SerializeField]
@@ -21,12 +27,16 @@ public class TextManager : MonoBehaviour
 
     void Start()
     {
+        
         if (textComponent != null && textComponent2 != null && texts != null && titles != null)
         {
             if (texts.Length > 0)
             {
                 textComponent.text = texts[currentIndex];
                 textComponent2.text = titles[currentIndex];
+                audioSource.clip = audio[currentIndex];
+                audioSource.Play();
+
             }
             else
             {
@@ -44,8 +54,11 @@ public class TextManager : MonoBehaviour
         currentIndex++;
         if (currentIndex < texts.Length)
         {
+            audioSource.Stop();
             textComponent.text = texts[currentIndex];
             textComponent2.text = titles[currentIndex];
+            audioSource.clip = audio[currentIndex];
+            audioSource.Play();
         }
         // Wenn alle Texte durchgewechselt, Wechsel der Szene
         else

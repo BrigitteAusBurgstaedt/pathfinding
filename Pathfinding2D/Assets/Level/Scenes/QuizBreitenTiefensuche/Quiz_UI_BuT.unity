@@ -1032,7 +1032,7 @@ MonoBehaviour:
     - "untersucht Graph in der Tiefe ohne ber\xFCcksichtigung der l\xE4nge"
     - Arbeitet mit einer Warteschlange
     CorrectAnswer: 3
-  - Questions: "Wof\xFCr ann die Tiefensuche effektiv eingesetzt werden?"
+  - Questions: "Wof\xFCr kann die Tiefensuche effektiv eingesetzt werden?"
     Answers:
     - Sortierung von Elementen
     - Findung maximaler Flussmengen
@@ -1050,9 +1050,9 @@ MonoBehaviour:
   - Questions: "Wann w\xE4hlt man die Tiefensuche im Gegensatz zur Breitensuche?"
     Answers:
     - "Suche nach k\xFCrzesten Pfaden in Netzwerk"
-    - Knspektion gleicher Ebenen
+    - Inspektion gleicher Ebenen
     - "Vollst\xE4ndiges Durchschauen von Baumstrukturen"
-    - durchlauf eines ungewichtetes Graphen
+    - Durchlauf eines ungewichtetes Graphen
     CorrectAnswer: 3
   options:
   - {fileID: 1058656410}
@@ -1715,7 +1715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ba51aebd5878f4f88e65f7460195dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneName: Summary1
+  targetSceneName: Learngoal2
 --- !u!114 &1540495984
 MonoBehaviour:
   m_ObjectHideFlags: 0
