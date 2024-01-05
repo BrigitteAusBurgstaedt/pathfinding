@@ -139,6 +139,7 @@ PrefabInstance:
       propertyPath: m_Text
       value: Nachdem du nun alle Pfadsuchalgorithmen in den einzelnen Abschnitten
         kennengelernt hats, kannst du diese jetzt im freien Spiel weiter ausprobieren.
+        Mit den Buttons oben links kannst du zwischen den Algorithmen wechseln.
       objectReference: {fileID: 0}
     - target: {fileID: 3830799724715085659, guid: 67f6365ba04ca4e48bf553d485173e61, type: 3}
       propertyPath: m_Pivot.x

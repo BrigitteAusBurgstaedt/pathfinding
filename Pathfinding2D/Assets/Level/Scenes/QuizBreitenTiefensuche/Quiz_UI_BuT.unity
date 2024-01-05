@@ -982,34 +982,78 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   QnA:
-  - Questions: Test?
+  - Questions: Welchem Prinzip folgt die Breitensuche (BFS)?
     Answers:
-    - ja
-    - Ja
-    - Nein
-    - nein
+    - LIFO-Prinzip
+    - FIFO-Prinzip
+    - LILO-Prinzip
+    - FILO-Prinzip
     CorrectAnswer: 2
-  - Questions: hallo
+  - Questions: "Wof\xFCr sind die Baumkanten in der Breitensuche typischerweise verantwortlich?"
     Answers:
-    - 'ja '
-    - nein
-    - vielleicht
-    - wieso
+    - "L\xE4ngste Wege im Graphen"
+    - "K\xFCrzeste Wege im Graphen"
+    - "R\xFCckw\xE4rtskanten im Graphen"
+    - "Zuf\xE4llige Verbindungen im Graphen"
     CorrectAnswer: 2
-  - Questions: 2+4
+  - Questions: "Welches Problem kann mit der Breitensuche in einem Netzwerk effizient
+      gel\xF6st werden?"
     Answers:
-    - 4
-    - 8
-    - 9
-    - 6
-    CorrectAnswer: 4
-  - Questions: 6x6
+    - 'Maximale Flussmenge '
+    - 'Sortierung von Elementen '
+    - "Suche nach k\xFCrzesten Pfaden "
+    - 'Parallele Verbindungen '
+    CorrectAnswer: 3
+  - Questions: "Welche Aussage \xFCber die Laufzeit der Breitensuche ist korrekt?"
     Answers:
-    - 1
-    - 2
-    - 3
-    - 36
-    CorrectAnswer: 4
+    - O(n)
+    - (log n)
+    - O(|V|+|E|)
+    - O(n+m)
+    CorrectAnswer: 3
+  - Questions: Wie unterscheiden sich die Breiten- und Tiefensuche?
+    Answers:
+    - BFS arbeitet nach FILO, DFS nach LILO-Prinzip
+    - "BFS findet k\xFCrzeste Wege, DFS untersucht tiefe Pfade"
+    - BFS verwendet Adjazenzmatrizenm DFS Adjazezlisten
+    - "BFS hat eine Laufzeitkomplexit\xE4t von O(log n), DFS von O(n)"
+    CorrectAnswer: 2
+  - Questions: Welchem Prinzip folgt die Tiefensuche (DFS)
+    Answers:
+    - LIFO-Prinzip
+    - FIFO-Prinzip
+    - LILO-Prinzip
+    - FILO-Prinizip
+    CorrectAnswer: 1
+  - Questions: Was charakterisiert die Teifensuche im Vergleich zur Breitensuche?
+    Answers:
+    - 'Untersucht alle Knoten auf gleicher Ebene zuerst '
+    - "Findet k\xFCrzeste Pfade im Graphen "
+    - "untersucht Graph in der Tiefe ohne ber\xFCcksichtigung der l\xE4nge"
+    - Arbeitet mit einer Warteschlange
+    CorrectAnswer: 3
+  - Questions: "Wof\xFCr ann die Tiefensuche effektiv eingesetzt werden?"
+    Answers:
+    - Sortierung von Elementen
+    - Findung maximaler Flussmengen
+    - Durchschauen komplexer Strukturen
+    - "Suche nach k\xFCrzesten Pfaden"
+    CorrectAnswer: 3
+  - Questions: "Welche Datenstruktur wird oft in der Tiefensuche verwendet um die
+      n\xE4chsten Knoten zu bestimmen?"
+    Answers:
+    - Queue
+    - Stack
+    - Liste
+    - Array
+    CorrectAnswer: 2
+  - Questions: "Wann w\xE4hlt man die Tiefensuche im Gegensatz zur Breitensuche?"
+    Answers:
+    - "Suche nach k\xFCrzesten Pfaden in Netzwerk"
+    - Knspektion gleicher Ebenen
+    - "Vollst\xE4ndiges Durchschauen von Baumstrukturen"
+    - durchlauf eines ungewichtetes Graphen
+    CorrectAnswer: 3
   options:
   - {fileID: 1058656410}
   - {fileID: 797126781}
